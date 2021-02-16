@@ -1,0 +1,75 @@
+Table events as E {
+  id int [pk, increment] // auto-increment
+  title varchar [not null]
+  description varchar [not null]
+  event_start_date timestamp [not null]
+  event_end_date timestamp [not null]
+  reg_start_date timestamp [not null]
+  reg_end_date timestamp [not null]
+  created_at timestamp [default: `now()`]
+  max_user int [default: 1, not null]
+  min_user int [default: 1, not null]
+  accept_file_type varchar [default: null]
+  accept_video_file boolean
+  location varchar
+}
+
+Table users as U {
+  id int [pk, increment]
+  name varchar [not null]
+  type varchar [not null]
+  password varchar
+}
+
+Table teams as T {
+  id int [pk, increment]
+  event_id int [not null]
+  name varchar [not null]
+  reward_id int [default: null]
+  user_ids varchar [not null]
+  lead_user_id int [not null]
+}
+
+Table rewards as R {
+  id int [pk, increment]
+  event_id int [not null]
+  amount int [default: 0, not null]
+  type varchar
+  title varchar [not null]
+  position int
+}
+
+Table submission as S {
+  id int [pk, increment]
+  title varchar
+  submitted_at timestamp [default: `now()`]
+  team_id int [not null]
+  event_id int [not null]
+  location varchar
+  video_file varchar
+  views int [default: 0]
+}
+
+Table subscription as sub {
+  id int [pk,increment]
+  user_id int [not null]
+  event_id int [not null]
+}
+
+Table comments as com {
+  id int [pk,increment]
+  comment varchar [not null]
+  commented_at datetime [default: `now()`]
+  user_id int
+  submission_id int [not null]
+  rating int
+}
+
+Ref: T.event_id > E.id
+Ref: S.event_id > E.id
+Ref: R.event_id > E.id
+Ref: T.reward_id - R.id
+Ref: T.lead_user_id - U.id
+Ref: S.team_id - T.id
+Ref: sub.user_id > U.id
+Ref: sub.event_id > E.id
