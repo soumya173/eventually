@@ -28,6 +28,7 @@ Table teams as T {
   reward_id int [default: null]
   user_ids varchar [not null]
   lead_user_id int [not null]
+  type varchar [not null]
 }
 
 Table rewards as R {
@@ -73,3 +74,5 @@ Ref: T.lead_user_id - U.id
 Ref: S.team_id - T.id
 Ref: sub.user_id > U.id
 Ref: sub.event_id > E.id
+Ref: com.user_id > U.id
+Ref: com.submission_id > S.id
