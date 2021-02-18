@@ -82,6 +82,56 @@ paths:
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+  /event/upcoming:
+    get:
+      tags:
+      - "event"
+      summary: "Get upcoming event"
+      description: "Get upcoming event"
+      operationId: "get_upcoming_event"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Events"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Info"
+        500:
+          description: "Server Error"
+          schema:
+            $ref: "#/definitions/Info"
+  /event/active:
+    get:
+      tags:
+      - "event"
+      summary: "Get active event"
+      description: "Get active event"
+      operationId: "get_active_event"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Events"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Info"
+        500:
+          description: "Server Error"
+          schema:
+            $ref: "#/definitions/Info"
   /event/{eventid}:
     get:
       tags:
@@ -370,6 +420,36 @@ paths:
           description: "Success"
           schema:
             $ref: "#/definitions/Reward"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Info"
+        500:
+          description: "Server Error"
+          schema:
+            $ref: "#/definitions/Info"
+  /reward/event/{eventid}:
+    get:
+      tags:
+      - "reward"
+      summary: "Get reward by event id"
+      description: "Get reward by event id"
+      operationId: "get_reward_by_event_id"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "eventid"
+        in: "path"
+        description: "ID of the event to fetch"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Rewards"
         400:
           description: "Bad Request"
           schema:

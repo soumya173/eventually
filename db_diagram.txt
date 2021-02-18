@@ -12,6 +12,7 @@ Table events as E {
   accept_file_type varchar [default: null]
   accept_video_file boolean
   location varchar
+  allow_comment boolean
 }
 
 Table users as U {
