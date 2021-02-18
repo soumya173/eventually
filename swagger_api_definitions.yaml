@@ -82,6 +82,64 @@ paths:
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+  /event/search/{keyword}:
+    get:
+      tags:
+      - "event"
+      summary: "Search events by keyword"
+      description: "Search events by keyword"
+      operationId: "search_events_by_keyword"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "keyword"
+        type: "string"
+        required: true
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Events"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Info"
+        500:
+          description: "Server Error"
+          schema:
+            $ref: "#/definitions/Info"
+  /event/subscribed/{user_id}:
+    get:
+      tags:
+      - "event"
+      summary: "Get subscribed event"
+      description: "Get subscribed event"
+      operationId: "get_subscribed_event"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "path"
+        name: "user_id"
+        type: "integer"
+        required: true
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Events"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Info"
+        500:
+          description: "Server Error"
+          schema:
+            $ref: "#/definitions/Info"
   /event/upcoming:
     get:
       tags:
@@ -879,6 +937,7 @@ paths:
       description: "Create a submission"
       operationId: "create_submission"
       consumes:
+      - "multipart/form-data"
       - "application/json"
       produces:
       - "application/json"
@@ -889,6 +948,7 @@ paths:
         required: true
         schema:
           $ref: "#/definitions/Submission"
+        name:
       responses:
         200:
           description: "Success"
@@ -996,6 +1056,99 @@ paths:
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+  /submission/{submissionid}/files:
+    get:
+      tags:
+      - "submission"
+      - "download"
+      summary: "Download submission by id"
+      description: "Download submission by id"
+      operationId: "download_submission_by_id"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "submissionid"
+        in: "path"
+        description: "ID of the submission to fetch"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Submission"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Info"
+        500:
+          description: "Server Error"
+          schema:
+            $ref: "#/definitions/Info"
+    post:
+      tags:
+      - "submission"
+      - "upload"
+      summary: "Upload a submission file"
+      description: "Upload a  submission file"
+      operationId: "upload_submission_file_by_id"
+      consumes:
+      - "application/json"
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "submissionid"
+        in: "path"
+        description: "ID of the submission to modify"
+        required: true
+        type: "integer"
+      - name: "datafile"
+        in: "form-data"
+        description: "Submission File"
+        required: true
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Info"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Info"
+        500:
+          description: "Server Error"
+          schema:
+            $ref: "#/definitions/Info"
+    delete:
+      tags:
+      - "submission"
+      summary: "Delete submitted file"
+      description: "Delete submitted file by id"
+      operationId: "delete_submitted_file_by_id"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "submissionid"
+        in: "path"
+        description: "ID of the submitted file to delete"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Info"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Info"
+        500:
+          description: "Server Error"
+          schema:
+            $ref: "#/definitions/Info"
   /user:
     post:
       tags:
@@ -1004,7 +1157,6 @@ paths:
       description: "This can only be done by the logged in user."
       operationId: "createUser"
       produces:
-      - "application/xml"
       - "application/json"
       parameters:
       - in: "body"
@@ -1034,7 +1186,6 @@ paths:
       description: ""
       operationId: "loginUser"
       produces:
-      - "application/xml"
       - "application/json"
       parameters:
       - name: "username"
@@ -1208,9 +1359,10 @@ definitions:
       accept_video_file:
         type: "boolean"
     required:
-      - id
       - title
       - description
+      - max_user
+      - min_user
   Teams:
     type: "array"
     items:
@@ -1242,6 +1394,13 @@ definitions:
         enum:
           - "judge"
           - "participant"
+    required:
+      - event_id
+      - name
+      - user_ids
+      - lead_user_id
+      - type
+
   Rewards:
     type: "array"
     items:
@@ -1265,12 +1424,19 @@ definitions:
       position:
         type: "integer"
         format: "int64"
+    required:
+      - event_id
+      - title
+      - position
   Comments:
     type: "array"
     items:
       $ref: "#/definitions/Comment"
   Comment:
     type: "object"
+    required:
+      - user_id
+      - submission_id
     properties:
       id:
         type: "integer"
@@ -1304,6 +1470,9 @@ definitions:
       event_id:
         type: "integer"
         format: "int64"
+    required:
+      - user_id
+      - event_id
   Submissions:
     type: "array"
     items:
@@ -1322,8 +1491,8 @@ definitions:
       team_id:
         type: "integer"
         format: "int32"
-      location:
-        type: "string"
+      # location:
+      #   type: "string"
       video_file:
         type: "string"
       submitted_at:
@@ -1331,6 +1500,11 @@ definitions:
       views:
         type: "integer"
         format: "int32"
+    required:
+      - event_id
+      - title
+      - team_id
+
   User:
     type: "object"
     properties:
@@ -1348,6 +1522,9 @@ definitions:
         enum:
         - "admin"
         - "user"
+    required:
+      - name
+      - type
   Info:
     type: "object"
     properties:
