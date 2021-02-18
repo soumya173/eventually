@@ -768,7 +768,154 @@ paths:
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
-
+  /submission:
+    get:
+      tags:
+      - "submission"
+      summary: "Get all the submissions"
+      description: "Get all the submissions"
+      operationId: "get_all_submissions"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Submissions"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Info"
+        500:
+          description: "Server Error"
+          schema:
+            $ref: "#/definitions/Info"
+    post:
+      tags:
+      - "submission"
+      summary: "Create a submission"
+      description: "Create a submission"
+      operationId: "create_submission"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created submission details"
+        required: true
+        schema:
+          $ref: "#/definitions/Submission"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Submission"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Info"
+        500:
+          description: "Server Error"
+          schema:
+            $ref: "#/definitions/Info"
+  /submission/{submissionid}:
+    get:
+      tags:
+      - "submission"
+      summary: "Get submission by id"
+      description: "Get submission by id"
+      operationId: "get_submission_by_id"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "submissionid"
+        in: "path"
+        description: "ID of the submission to fetch"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Submission"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Info"
+        500:
+          description: "Server Error"
+          schema:
+            $ref: "#/definitions/Info"
+    put:
+      tags:
+      - "submission"
+      summary: "Modify submission"
+      description: "Modify submission"
+      operationId: "modify_submission_by_id"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "submissionid"
+        in: "path"
+        description: "ID of the submission to modify"
+        required: true
+        type: "integer"
+      - name: "body"
+        in: "body"
+        description: "ID of the submission to modify"
+        required: true
+        schema:
+          $ref: "#/definitions/Submission"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Submission"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Info"
+        500:
+          description: "Server Error"
+          schema:
+            $ref: "#/definitions/Info"
+    delete:
+      tags:
+      - "submission"
+      summary: "Delete submission"
+      description: "Delete submission"
+      operationId: "delete_submission_by_id"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "submissionid"
+        in: "path"
+        description: "ID of the submission to delete"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Submission"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Info"
+        500:
+          description: "Server Error"
+          schema:
+            $ref: "#/definitions/Info"
   /user:
     post:
       tags:
@@ -985,10 +1132,6 @@ definitions:
       - id
       - title
       - description
-      - event_start_date
-      - event_end_date
-      - reg_start_date
-      - reg_end_date
   Teams:
     type: "array"
     items:
