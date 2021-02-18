@@ -19,7 +19,8 @@ Table users as U {
   id int [pk, increment]
   name varchar [not null]
   type varchar [not null]
-  password varchar
+  password varchar [not null]
+  email varchar [not null]
 }
 
 Table teams as T {
