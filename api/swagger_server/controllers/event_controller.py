@@ -1,11 +1,10 @@
 import connexion
 import six
-
+import json
 from swagger_server.models.event import Event  # noqa: E501
 from swagger_server.models.events import Events  # noqa: E501
 from swagger_server.models.info import Info  # noqa: E501
 from swagger_server import util
-
 
 def create_event(body):  # noqa: E501
     """Create a event
@@ -54,7 +53,17 @@ def get_all_events():  # noqa: E501
 
     :rtype: Events
     """
-    return 'do some magic!'
+    from swagger_server.dbinterface import dbinterface as db
+    con = db.DbInterface()
+    con.connect()
+    rs = ''
+    rows = con.select("SELECT * FROM EVENTS")
+    events = []
+    for r in rows:
+        events.append(Event(r[0], r[1], r[2], r[3], r[4], r[5], r[6],
+                            r[7], r[8], r[9], r[10], r[11], r[12]))
+    con.disconnect()
+    return json.dumps(events)
 
 
 def get_event_by_id(eventid):  # noqa: E501
@@ -75,7 +84,7 @@ def get_subscribed_event(user_id):  # noqa: E501
 
     Get subscribed event # noqa: E501
 
-    :param user_id: 
+    :param user_id:
     :type user_id: int
 
     :rtype: Events
@@ -116,7 +125,7 @@ def search_events_by_keyword(keyword):  # noqa: E501
 
     Search events by keyword # noqa: E501
 
-    :param keyword: 
+    :param keyword:
     :type keyword: str
 
     :rtype: Events
