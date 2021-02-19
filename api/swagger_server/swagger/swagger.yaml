@@ -1,6 +1,8 @@
+---
 swagger: "2.0"
 info:
-  description: "REST API definition for EVENTually project, a simple user friendly event manager to host/manage all the events in hte the organization."
+  description: "REST API definition for EVENTually project, a simple user friendly\
+    \ event manager to host/manage all the events in hte the organization."
   version: "1.0.0"
   title: "EVENTually"
   termsOfService: "http://swagger.io/terms/"
@@ -9,8 +11,6 @@ info:
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-# host: "petstore.swagger.io"
-# basePath: "/v2"
 tags:
 - name: "event"
   description: "Operations on the events"
@@ -39,19 +39,21 @@ paths:
       - "application/json"
       produces:
       - "application/json"
+      parameters: []
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Events"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.event_controller"
     post:
       tags:
       - "event"
@@ -70,18 +72,19 @@ paths:
         schema:
           $ref: "#/definitions/Event"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Event"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.event_controller"
   /event/search/{keyword}:
     get:
       tags:
@@ -94,23 +97,24 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - in: "path"
-        name: "keyword"
-        type: "string"
+      - name: "keyword"
+        in: "path"
         required: true
+        type: "string"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Events"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.event_controller"
   /event/subscribed/{user_id}:
     get:
       tags:
@@ -123,23 +127,24 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - in: "path"
-        name: "user_id"
-        type: "integer"
+      - name: "user_id"
+        in: "path"
         required: true
+        type: "integer"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Events"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.event_controller"
   /event/upcoming:
     get:
       tags:
@@ -153,18 +158,19 @@ paths:
       - "application/json"
       parameters: []
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Events"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.event_controller"
   /event/active:
     get:
       tags:
@@ -178,18 +184,19 @@ paths:
       - "application/json"
       parameters: []
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Events"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.event_controller"
   /event/{eventid}:
     get:
       tags:
@@ -208,18 +215,19 @@ paths:
         required: true
         type: "integer"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Event"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.event_controller"
     put:
       tags:
       - "event"
@@ -236,25 +244,26 @@ paths:
         description: "ID of the event to modify"
         required: true
         type: "integer"
-      - name: "body"
-        in: "body"
+      - in: "body"
+        name: "body"
         description: "ID of the event to modify"
         required: true
         schema:
           $ref: "#/definitions/Event"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Event"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.event_controller"
     delete:
       tags:
       - "event"
@@ -272,18 +281,19 @@ paths:
         required: true
         type: "integer"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Event"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.event_controller"
   /team:
     get:
       tags:
@@ -295,19 +305,21 @@ paths:
       - "application/json"
       produces:
       - "application/json"
+      parameters: []
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Teams"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.team_controller"
     post:
       tags:
       - "team"
@@ -326,18 +338,19 @@ paths:
         schema:
           $ref: "#/definitions/Team"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Team"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.team_controller"
   /team/{teamid}:
     get:
       tags:
@@ -356,18 +369,19 @@ paths:
         required: true
         type: "integer"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Team"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.team_controller"
     put:
       tags:
       - "team"
@@ -384,25 +398,26 @@ paths:
         description: "ID of the team to modify"
         required: true
         type: "integer"
-      - name: "body"
-        in: "body"
+      - in: "body"
+        name: "body"
         description: "ID of the event to modify"
         required: true
         schema:
           $ref: "#/definitions/Team"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Team"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.team_controller"
     delete:
       tags:
       - "team"
@@ -420,18 +435,19 @@ paths:
         required: true
         type: "integer"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Team"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.team_controller"
   /reward:
     get:
       tags:
@@ -443,19 +459,21 @@ paths:
       - "application/json"
       produces:
       - "application/json"
+      parameters: []
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Rewards"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.reward_controller"
     post:
       tags:
       - "reward"
@@ -474,18 +492,19 @@ paths:
         schema:
           $ref: "#/definitions/Reward"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Reward"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.reward_controller"
   /reward/event/{eventid}:
     get:
       tags:
@@ -504,18 +523,19 @@ paths:
         required: true
         type: "integer"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Rewards"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.reward_controller"
   /reward/{rewardid}:
     get:
       tags:
@@ -534,18 +554,19 @@ paths:
         required: true
         type: "integer"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Reward"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.reward_controller"
     put:
       tags:
       - "reward"
@@ -562,25 +583,26 @@ paths:
         description: "ID of the reward to modify"
         required: true
         type: "integer"
-      - name: "body"
-        in: "body"
+      - in: "body"
+        name: "body"
         description: "ID of the reward to modify"
         required: true
         schema:
           $ref: "#/definitions/Reward"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Reward"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.reward_controller"
     delete:
       tags:
       - "reward"
@@ -598,18 +620,19 @@ paths:
         required: true
         type: "integer"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Reward"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.reward_controller"
   /comment:
     get:
       tags:
@@ -621,19 +644,21 @@ paths:
       - "application/json"
       produces:
       - "application/json"
+      parameters: []
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Comments"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.comment_controller"
     post:
       tags:
       - "comment"
@@ -652,18 +677,19 @@ paths:
         schema:
           $ref: "#/definitions/Comment"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Comment"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.comment_controller"
   /comment/{commentid}:
     get:
       tags:
@@ -682,18 +708,19 @@ paths:
         required: true
         type: "integer"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Comments"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.comment_controller"
     put:
       tags:
       - "comment"
@@ -710,25 +737,26 @@ paths:
         description: "ID of the comment to modify"
         required: true
         type: "integer"
-      - name: "body"
-        in: "body"
+      - in: "body"
+        name: "body"
         description: "ID of the comment to modify"
         required: true
         schema:
           $ref: "#/definitions/Comment"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Comment"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.comment_controller"
     delete:
       tags:
       - "comment"
@@ -746,18 +774,19 @@ paths:
         required: true
         type: "integer"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Comment"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.comment_controller"
   /subscription:
     get:
       tags:
@@ -769,19 +798,21 @@ paths:
       - "application/json"
       produces:
       - "application/json"
+      parameters: []
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Subscriptions"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.subscription_controller"
     post:
       tags:
       - "subscription"
@@ -800,18 +831,19 @@ paths:
         schema:
           $ref: "#/definitions/Subscription"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Subscription"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.subscription_controller"
   /subscription/{subscriptionid}:
     get:
       tags:
@@ -830,18 +862,19 @@ paths:
         required: true
         type: "integer"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Subscriptions"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.subscription_controller"
     put:
       tags:
       - "subscription"
@@ -858,25 +891,26 @@ paths:
         description: "ID of the subscription to modify"
         required: true
         type: "integer"
-      - name: "body"
-        in: "body"
+      - in: "body"
+        name: "body"
         description: "ID of the subscription to modify"
         required: true
         schema:
           $ref: "#/definitions/Subscription"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Subscription"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.subscription_controller"
     delete:
       tags:
       - "subscription"
@@ -894,18 +928,19 @@ paths:
         required: true
         type: "integer"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Subscription"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.subscription_controller"
   /submission:
     get:
       tags:
@@ -917,19 +952,21 @@ paths:
       - "application/json"
       produces:
       - "application/json"
+      parameters: []
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Submissions"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.submission_controller"
     post:
       tags:
       - "submission"
@@ -949,18 +986,19 @@ paths:
         schema:
           $ref: "#/definitions/Submission"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Submission"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.submission_controller"
   /submission/{submissionid}:
     get:
       tags:
@@ -979,18 +1017,19 @@ paths:
         required: true
         type: "integer"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Submission"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.submission_controller"
     put:
       tags:
       - "submission"
@@ -1007,25 +1046,26 @@ paths:
         description: "ID of the submission to modify"
         required: true
         type: "integer"
-      - name: "body"
-        in: "body"
+      - in: "body"
+        name: "body"
         description: "ID of the submission to modify"
         required: true
         schema:
           $ref: "#/definitions/Submission"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Submission"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.submission_controller"
     delete:
       tags:
       - "submission"
@@ -1043,18 +1083,19 @@ paths:
         required: true
         type: "integer"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Submission"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.submission_controller"
   /submission/{submissionid}/files:
     get:
       tags:
@@ -1072,18 +1113,19 @@ paths:
         required: true
         type: "integer"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Submission"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.submission_controller"
     post:
       tags:
       - "submission"
@@ -1104,22 +1146,23 @@ paths:
         type: "integer"
       - name: "datafile"
         in: "formData"
-        type: "file"
         description: "Submission File"
         required: true
+        type: "file"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Info"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.submission_controller"
     delete:
       tags:
       - "submission"
@@ -1137,25 +1180,26 @@ paths:
         required: true
         type: "integer"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Info"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.submission_controller"
   /user:
     post:
       tags:
       - "user"
       summary: "Create user"
       description: "This can only be done by the logged in user."
-      operationId: "createUser"
+      operationId: "create_user"
       produces:
       - "application/json"
       parameters:
@@ -1166,25 +1210,26 @@ paths:
         schema:
           $ref: "#/definitions/User"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/User"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.user_controller"
   /user/login:
     get:
       tags:
       - "user"
       summary: "Logs user into the system"
       description: ""
-      operationId: "loginUser"
+      operationId: "login_user"
       produces:
       - "application/json"
       parameters:
@@ -1199,40 +1244,43 @@ paths:
         required: true
         type: "string"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/User"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.user_controller"
   /user/logout:
     get:
       tags:
       - "user"
       summary: "Logs out current logged in user session"
       description: ""
-      operationId: "logoutUser"
+      operationId: "logout_user"
       produces:
       - "application/json"
+      parameters: []
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/Info"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.user_controller"
   /user/{userid}:
     get:
       tags:
@@ -1249,18 +1297,19 @@ paths:
         required: true
         type: "integer"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/User"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.user_controller"
     put:
       tags:
       - "user"
@@ -1282,18 +1331,19 @@ paths:
         schema:
           $ref: "#/definitions/User"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/User"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.user_controller"
     delete:
       tags:
       - "user"
@@ -1309,18 +1359,19 @@ paths:
         required: true
         type: "integer"
       responses:
-        200:
+        "200":
           description: "Success"
           schema:
             $ref: "#/definitions/User"
-        400:
+        "400":
           description: "Bad Request"
           schema:
             $ref: "#/definitions/Info"
-        500:
+        "500":
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.user_controller"
 definitions:
   Events:
     type: "array"
@@ -1328,6 +1379,11 @@ definitions:
       $ref: "#/definitions/Event"
   Event:
     type: "object"
+    required:
+    - "description"
+    - "max_user"
+    - "min_user"
+    - "title"
     properties:
       id:
         type: "integer"
@@ -1358,17 +1414,32 @@ definitions:
         type: "string"
       accept_video_file:
         type: "boolean"
-    required:
-      - title
-      - description
-      - max_user
-      - min_user
+    example:
+      reg_end_date: "reg_end_date"
+      event_end_date: "event_end_date"
+      description: "description"
+      created_at: "created_at"
+      title: "title"
+      accept_video_file: true
+      min_user: 1
+      max_user: 6
+      reg_start_date: "reg_start_date"
+      location: "location"
+      id: 0
+      accept_file_type: "accept_file_type"
+      event_start_date: "event_start_date"
   Teams:
     type: "array"
     items:
       $ref: "#/definitions/Team"
   Team:
     type: "object"
+    required:
+    - "event_id"
+    - "lead_user_id"
+    - "name"
+    - "type"
+    - "user_ids"
     properties:
       id:
         type: "integer"
@@ -1392,21 +1463,28 @@ definitions:
       type:
         type: "string"
         enum:
-          - "judge"
-          - "participant"
-    required:
-      - event_id
-      - name
-      - user_ids
-      - lead_user_id
-      - type
-
+        - "judge"
+        - "participant"
+    example:
+      event_id: 6
+      user_ids:
+      - 5
+      - 5
+      name: "name"
+      reward_id: 1
+      lead_user_id: 5
+      id: 0
+      type: "judge"
   Rewards:
     type: "array"
     items:
       $ref: "#/definitions/Reward"
   Reward:
     type: "object"
+    required:
+    - "event_id"
+    - "position"
+    - "title"
     properties:
       id:
         type: "integer"
@@ -1424,10 +1502,13 @@ definitions:
       position:
         type: "integer"
         format: "int64"
-    required:
-      - event_id
-      - title
-      - position
+    example:
+      amount: 1
+      event_id: 6
+      id: 0
+      position: 5
+      title: "title"
+      type: "type"
   Comments:
     type: "array"
     items:
@@ -1435,8 +1516,8 @@ definitions:
   Comment:
     type: "object"
     required:
-      - user_id
-      - submission_id
+    - "submission_id"
+    - "user_id"
     properties:
       id:
         type: "integer"
@@ -1454,12 +1535,22 @@ definitions:
       rating:
         type: "integer"
         format: "int64"
+    example:
+      submission_id: 1
+      user_id: 6
+      rating: 5
+      comment: "comment"
+      id: 0
+      commented_at: "commented_at"
   Subscriptions:
     type: "array"
     items:
       $ref: "#/definitions/Subscription"
   Subscription:
     type: "object"
+    required:
+    - "event_id"
+    - "user_id"
     properties:
       id:
         type: "integer"
@@ -1470,15 +1561,20 @@ definitions:
       event_id:
         type: "integer"
         format: "int64"
-    required:
-      - user_id
-      - event_id
+    example:
+      event_id: 1
+      user_id: 6
+      id: 0
   Submissions:
     type: "array"
     items:
       $ref: "#/definitions/Submission"
   Submission:
     type: "object"
+    required:
+    - "event_id"
+    - "team_id"
+    - "title"
     properties:
       id:
         type: "integer"
@@ -1491,8 +1587,6 @@ definitions:
       team_id:
         type: "integer"
         format: "int32"
-      # location:
-      #   type: "string"
       video_file:
         type: "string"
       submitted_at:
@@ -1500,13 +1594,19 @@ definitions:
       views:
         type: "integer"
         format: "int32"
-    required:
-      - event_id
-      - title
-      - team_id
-
+    example:
+      event_id: 6
+      submitted_at: "submitted_at"
+      id: 0
+      team_id: 1
+      video_file: "video_file"
+      title: "title"
+      views: 5
   User:
     type: "object"
+    required:
+    - "name"
+    - "type"
     properties:
       id:
         type: "integer"
@@ -1522,9 +1622,12 @@ definitions:
         enum:
         - "admin"
         - "user"
-    required:
-      - name
-      - type
+    example:
+      password: "password"
+      name: "name"
+      id: 0
+      type: "admin"
+      email: "email"
   Info:
     type: "object"
     properties:
@@ -1539,6 +1642,23 @@ definitions:
     description: "Contains information about the request which could include warnings,\
       \ error messages, and information about any side effects of some operations\
       \ such as which dashboards were added or removed.\n"
+    example:
+      critical:
+        details:
+        - "details"
+        - "details"
+      warning:
+        details:
+        - "details"
+        - "details"
+      error:
+        details:
+        - "details"
+        - "details"
+      info:
+        details:
+        - "details"
+        - "details"
   Info_critical:
     properties:
       details:
@@ -1547,6 +1667,10 @@ definitions:
           type: "string"
     description: "Contains information about a critical error that has occurred that\
       \ could affect the availability of the service.\n"
+    example:
+      details:
+      - "details"
+      - "details"
   Info_error:
     properties:
       details:
@@ -1555,6 +1679,10 @@ definitions:
           type: "string"
     description: "Contains information about a error that has occurred during the\
       \ execution of the requested operation.\n"
+    example:
+      details:
+      - "details"
+      - "details"
   Info_warning:
     properties:
       details:
@@ -1565,6 +1693,10 @@ definitions:
       \ operation but which is out of the ordinary and may require user action or\
       \ investigation. For example, a warning could be used to identify the use of\
       \ deprecated REST API calls.\n"
+    example:
+      details:
+      - "details"
+      - "details"
   Info_info:
     properties:
       details:
@@ -1574,13 +1706,7 @@ definitions:
     description: "Contains details of the requested operation that would be of interest\
       \ to the user. For example, it could include a list of items that have been\
       \ deleted when a containing object is deleted.\n"
-  # ApiResponse:
-  #   type: "object"
-  #   properties:
-  #     code:
-  #       type: "integer"
-  #       format: "int32"
-  #     type:
-  #       type: "string"
-  #     message:
-  #       type: "string"
+    example:
+      details:
+      - "details"
+      - "details"
