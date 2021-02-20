@@ -1,5 +1,5 @@
 # Byte-compiled / optimized / DLL files
-*__pycache__/
+*__pycache__
 *.py[cod]
 *$py.class
 
@@ -64,5 +64,5 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
-api/swagger_server/controllers/__pycache__/event_controller.cpython-38.pyc
+*__pycache__*
 *.pyc

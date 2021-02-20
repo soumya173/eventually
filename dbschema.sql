@@ -6,7 +6,7 @@ CREATE TABLE `events` (
   `event_end_date` timestamp NOT NULL,
   `reg_start_date` timestamp NOT NULL,
   `reg_end_date` timestamp NOT NULL,
-  `created_at` timestamp DEFAULT (now()),
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
   `max_user` INTEGER NOT NULL DEFAULT 1,
   `min_user` INTEGER NOT NULL DEFAULT 1,
   `accept_file_type` varchar(255) DEFAULT null,
@@ -51,7 +51,7 @@ CREATE TABLE `rewards` (
 CREATE TABLE `submission` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
   `title` varchar(255),
-  `submitted_at` timestamp DEFAULT (now()),
+  `submitted_at` timestamp DEFAULT CURRENT_TIMESTAMP,
   `team_id` INTEGER NOT NULL,
   `event_id` INTEGER NOT NULL,
   `location` varchar(255),
@@ -71,7 +71,7 @@ CREATE TABLE `subscription` (
 CREATE TABLE `comments` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
   `comment` varchar(255) NOT NULL,
-  `commented_at` datetime DEFAULT (now()),
+  `commented_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `user_id` INTEGER,
   `submission_id` INTEGER NOT NULL,
   `rating` INTEGER,
