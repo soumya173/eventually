@@ -66,3 +66,7 @@ target/
 .ipynb_checkpoints
 api/swagger_server/controllers/__pycache__/event_controller.cpython-38.pyc
 *.pyc
+
+#node modules
+node_modules/
+
