@@ -1,0 +1,37 @@
+.eventually_top_bar {
+  width: 100%;
+  margin: 0 auto;
+  top: 0;
+  padding: 10px;
+  position: fixed;
+  z-index: 1000;
+  height: 71px;
+  background: #106eea;
+}
+
+.project_name {
+  color: #ffffff;
+  padding: .3rem 1rem 0 1rem;
+  font-size: 22px;
+  display: block;
+  float: left;
+  letter-spacing: 1.7px;
+  font-weight: 300;
+  margin-top: 10px;
+}
+
+.project {
+  padding: auto;
+}
+
+.logo {
+  border: 0px;
+  background: url('../../assets/favicon-32x32.png') no-repeat;
+  background-size: 42px 42px;
+  width: 42px;
+  height: 42px;
+  display: block;
+  margin-bottom: 2px;
+  margin-left: 10px;
+  float: left;
+}
