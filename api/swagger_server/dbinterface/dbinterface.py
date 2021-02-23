@@ -10,6 +10,7 @@ class DbInterface:
 
     def connect(self):
         self.conn = sqlite3.connect(DB_NAME)
+        return self.conn
 
     def disconnect(self):
         if self.conn:
