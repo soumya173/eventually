@@ -164,8 +164,9 @@ def modify_event_by_id(eventid, body):  # noqa: E501
     con.execute(f"SELECT * FROM events WHERE id={eventid}")
     rows = con.fetchall()
     if len(rows) > 0:
-        con.execute(f"UPDATE events SET (title, description, event_start_date, event_end_date, reg_start_date, reg_end_date, max_user, min_user, accept_file_type, accept_video_file, location) VALUES ('{body.title}', '{body.description}', '{body.event_start_date}', '{body.event_end_date}', '{body.reg_start_date}', '{body.reg_end_date}', {body.max_user}, {body.min_user}, '{body.accept_file_type}', {body.accept_video_file}, '{body.location}') WHERE id={eventid}")
-        con.commit()
+        # con.execute(f"UPDATE events SET (title, description, event_start_date, event_end_date, reg_start_date, reg_end_date, max_user, min_user, accept_file_type, accept_video_file, location) VALUES ('{body.title}', '{body.description}', '{body.event_start_date}', '{body.event_end_date}', '{body.reg_start_date}', '{body.reg_end_date}', {body.max_user}, {body.min_user}, '{body.accept_file_type}', {body.accept_video_file}, '{body.location}') WHERE id={eventid}")
+        con.execute(f"UPDATE events SET title='{body.title}', description='{body.description}', event_start_date='{body.event_start_date}', event_end_date='{body.event_end_date}', reg_start_date='{body.reg_start_date}', reg_end_date='{body.reg_end_date}', max_user={body.max_user}, min_user={body.min_user}, accept_file_type='{body.accept_file_type}', accept_video_file={body.accept_video_file}, location='{body.location}' WHERE id={eventid}")
+        conn.commit()
         con.execute(f"SELECT * FROM events WHERE id={eventid}")
         rows = con.fetchall()
         event = Event(rows[0][0], rows[0][1], rows[0][2], rows[0][3], rows[0][4], rows[0][5], rows[0][6],
