@@ -38,20 +38,23 @@ def create_team(body):  # noqa: E501
     print(sql)
     teamid = cur.execute(sql).fetchall()
     if len(teamid):
+        db.DbInterface().disconnect()
         return Info(critical=f"A team already exists with name: {body.name} in this Event. Please choose other name"), 400
 
-    sql = f"select user_ids from teams where event_id = {body.event_id}"
-    users_in_this_event = cur.execute(sql).fetchall()
 
     for user_id in body.user_ids:
         sql1 = f"select name from users where id = {user_id}"
         res = cur.execute(sql1).fetchone()
         if res is None:
+            db.DbInterface().disconnect()
             return Info(critical=f"No user found with user_id: {user_id}"), 404
 
+    sql = f"select user_ids from teams where event_id = {body.event_id}"
+    users_in_this_event = cur.execute(sql).fetchall()
     for user_id in body.user_ids:
         for user in users_in_this_event:
             if user_id in eval(user[0]):
+                db.DbInterface().disconnect()
                 return Info(critical=f"User with id {user_id} is already in an other team"), 400
 
     if body.reward_id is None:
@@ -85,11 +88,12 @@ def delete_team_by_id(teamid):  # noqa: E501
     r = cur.execute(sql).fetchone()
     if r is None:
         db.DbInterface().disconnect()
-        return Info(critical="No team found with specified id: {}".format(teamid)), 400
+        return Info(critical="No team found with specified id: {}".format(teamid)), 404
     if r[0] == teamid:
         sql="delete from teams where id = {}".format(teamid)
         cur.execute(sql)
-        con.disconnect()
+        con.commit()
+        db.DbInterface().disconnect()
         return Info(info="Team deleted: {}".format(r[1])), 200
     db.DbInterface().disconnect()
     return Info(error="Unknown Error: "), 501
@@ -107,10 +111,10 @@ def get_all_teams():  # noqa: E501
     con.row_factory = dict_factory
     cur = con.cursor()
     rows = cur.execute("select * from teams;").fetchall()
-    teams = []
-    for r in rows:
-        print(r)
-        teams.append(Team(r))
+    # teams = []
+    # for r in rows:
+    #     print(r)
+    #     teams.append(Team(r))
     db.DbInterface().disconnect()
     return jsonify(rows)
 
@@ -167,7 +171,8 @@ def modify_team_by_id(teamid, body):  # noqa: E501
         body = Team.from_dict(connexion.request.get_json())  # noqa: E501
     
     if body.lead_user_id not in body.user_ids:
-        return Info(error=f"The lead user must be a memeber in the team."), 400
+        db.DbInterface().disconnect()
+        return Info(error=f"The lead user must be a member in the team."), 400
 
     sql = f"select * from teams where name = '{body.name}' and event_id = {body.event_id};"
     print(sql)
@@ -182,11 +187,13 @@ def modify_team_by_id(teamid, body):  # noqa: E501
         sql1 = f"select name from users where id = {user_id}"
         res = cur.execute(sql1).fetchone()
         if res is None:
+            db.DbInterface().disconnect()
             return Info(critical=f"No user found with user_id: {user_id}"), 404
 
     for user_id in body.user_ids:
         for user in users_in_this_event:
             if user_id in eval(user[0]):
+                db.DbInterface().disconnect()
                 return Info(critical=f"User with id {user_id} is already in an other team"), 400
 
     if body.reward_id is None:
