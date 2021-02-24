@@ -60,6 +60,20 @@ def create_team(body):  # noqa: E501
     if body.reward_id is None:
         body.reward_id = 'NULL'
 
+    sql = f"select id,title from events where id = {body.event_id};"
+    print(sql)
+    r = cur.execute(sql).fetchone()
+    if r is None:
+        db.DbInterface().disconnect()
+        return Info(critical="No event found with specified id: {}".format(body.event_id)), 404
+
+    sql = f"select max_user, min_user from events where id = {body.event_id};"
+    print(sql)
+    max_user, min_user = cur.execute(sql).fetchone()
+    print(max_user, min_user, "NIKIL")
+    if len(body.user_ids) > max_user or len(body.user_ids) < min_user:
+        return Info(error=f"Team Criteria Validation Error: minimum members allowed is {min_user} & maximum members allowed is {max_user}"), 400
+
     sql2 = f"insert into teams (event_id, name, reward_id, user_ids, lead_user_id, type) values ( {body.event_id}, '{body.name}', {body.reward_id}, '{body.user_ids}', {body.lead_user_id}, '{body.type}' );"
     print(sql2)
     cur.execute(sql2)
