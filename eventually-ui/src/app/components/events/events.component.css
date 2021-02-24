@@ -1,0 +1,12 @@
+.card {
+    height: 200px;
+}
+
+.event-name {
+    text-align: center;
+    line-height: 200px;
+}
+
+.register-button {
+    float: right;
+}

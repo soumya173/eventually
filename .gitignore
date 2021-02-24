@@ -66,3 +66,7 @@ target/
 .ipynb_checkpoints
 *__pycache__*
 *.pyc
+
+#node modules
+node_modules/
+

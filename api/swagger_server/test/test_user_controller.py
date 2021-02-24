@@ -6,6 +6,7 @@ from flask import json
 from six import BytesIO
 
 from swagger_server.models.info import Info  # noqa: E501
+from swagger_server.models.login_details import LoginDetails  # noqa: E501
 from swagger_server.models.user import User  # noqa: E501
 from swagger_server.test import BaseTestCase
 
@@ -54,23 +55,23 @@ class TestUserController(BaseTestCase):
 
         Logs user into the system
         """
-        query_string = [('username', 'username_example'),
-                        ('password', 'password_example')]
+        body = LoginDetails()
         response = self.client.open(
             '/user/login',
-            method='GET',
-            query_string=query_string)
+            method='POST',
+            data=json.dumps(body),
+            content_type='application/json')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
     def test_logout_user(self):
         """Test case for logout_user
 
-        Logs out current logged in user session
+        Logs user into the system
         """
         response = self.client.open(
-            '/user/logout',
-            method='GET')
+            '/user/logout/{userid}'.format(userid=56),
+            method='POST')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 

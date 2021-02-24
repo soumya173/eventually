@@ -15,7 +15,7 @@ class User(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: int=None, name: str=None, email: str=None, password: str=None, type: str=None):  # noqa: E501
+    def __init__(self, id: int=None, name: str=None, email: str=None, password: str=None, logged: bool=False, type: str=None):  # noqa: E501
         """User - a model defined in Swagger
 
         :param id: The id of this User.  # noqa: E501
@@ -26,6 +26,8 @@ class User(Model):
         :type email: str
         :param password: The password of this User.  # noqa: E501
         :type password: str
+        :param logged: The logged of this User.  # noqa: E501
+        :type logged: bool
         :param type: The type of this User.  # noqa: E501
         :type type: str
         """
@@ -34,6 +36,7 @@ class User(Model):
             'name': str,
             'email': str,
             'password': str,
+            'logged': bool,
             'type': str
         }
 
@@ -42,6 +45,7 @@ class User(Model):
             'name': 'name',
             'email': 'email',
             'password': 'password',
+            'logged': 'logged',
             'type': 'type'
         }
 
@@ -49,6 +53,7 @@ class User(Model):
         self._name = name
         self._email = email
         self._password = password
+        self._logged = logged
         self._type = type
 
     @classmethod
@@ -147,6 +152,27 @@ class User(Model):
         """
 
         self._password = password
+
+    @property
+    def logged(self) -> bool:
+        """Gets the logged of this User.
+
+
+        :return: The logged of this User.
+        :rtype: bool
+        """
+        return self._logged
+
+    @logged.setter
+    def logged(self, logged: bool):
+        """Sets the logged of this User.
+
+
+        :param logged: The logged of this User.
+        :type logged: bool
+        """
+
+        self._logged = logged
 
     @property
     def type(self) -> str:

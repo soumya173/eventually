@@ -146,6 +146,18 @@ def get_all_events():  # noqa: E501
                         accept_video_file=r[12]))
     return jsonify(events)
 
+def get_teams_by_eveid(eventid):  # noqa: E501
+    """Get teams by id
+
+    Get teams by id # noqa: E501
+
+    :param eventid: ID of the event to fetch
+    :type eventid: int
+
+    :rtype: Teams
+    """
+    return 'do some magic!'
+
 
 def get_event_by_id(eventid):  # noqa: E501
     """Get event by id

@@ -1,0 +1,31 @@
+<div class="wrapper">
+    <div class="page-header page-header-small" filter-color="orange">
+        <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url('assets/img/eventimage.jpg') ;">
+        </div>
+        <div class="container">
+            <div class="content-center">
+                <p class="category">Upcoming/Ongoing Events</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="section section-tabs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 ml-auto col-xl-6 mr-auto" *ngFor="let n of [1,2,3,4]">
+                <!-- Nav tabs -->
+
+                <div class="card">
+                    <span class="event-name">
+                        Events Name
+                    </span>
+                    <button type="button" class="btn btn-default register-button" placement="right">
+                        Register
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
