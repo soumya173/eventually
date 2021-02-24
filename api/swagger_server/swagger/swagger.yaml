@@ -1225,6 +1225,29 @@ paths:
             $ref: "#/definitions/Info"
       x-swagger-router-controller: "swagger_server.controllers.submission_controller"
   /user:
+    get:
+      tags:
+      - "user"
+      summary: "Get all users"
+      description: ""
+      operationId: "get_all_users"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            $ref: "#/definitions/User"
+        "400":
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Info"
+        "500":
+          description: "Server Error"
+          schema:
+            $ref: "#/definitions/Info"
+      x-swagger-router-controller: "swagger_server.controllers.user_controller"
     post:
       tags:
       - "user"

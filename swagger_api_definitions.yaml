@@ -1208,6 +1208,27 @@ paths:
           description: "Server Error"
           schema:
             $ref: "#/definitions/Info"
+    get:
+      tags:
+      - "user"
+      summary: "Get all users"
+      description: ""
+      operationId: "get_all_users"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/User"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Info"
+        500:
+          description: "Server Error"
+          schema:
+            $ref: "#/definitions/Info"
   /user/login:
     post:
       tags:
@@ -1340,7 +1361,7 @@ paths:
         500:
           description: "Server Error"
           schema:
-            $ref: "#/definitions/Info"
+            $ref: "#/definitions/Info"      
 definitions:
   Events:
     type: "array"
