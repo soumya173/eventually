@@ -15,6 +15,9 @@ import { NotificationComponent } from './notification/notification.component';
 import { NgbdModalBasic } from './modal/modal.component';
 import { EventsComponent } from './events/events.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CreateEventsComponent } from './events/create-events/create-events.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
     imports: [
@@ -23,7 +26,9 @@ import { ProfileComponent } from './profile/profile.component';
         NgbModule,
         NouisliderModule,
         RouterModule,
-        JwBootstrapSwitchNg2Module
+        JwBootstrapSwitchNg2Module,
+        ReactiveFormsModule,
+        DropdownModule
       ],
     declarations: [
         ComponentsComponent,
@@ -35,6 +40,7 @@ import { ProfileComponent } from './profile/profile.component';
         NgbdModalBasic,
         EventsComponent,
         ProfileComponent,
+        CreateEventsComponent,
     ],
     exports:[ ComponentsComponent ]
 })

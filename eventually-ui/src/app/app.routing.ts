@@ -8,6 +8,7 @@ import { LandingComponent } from './examples/landing/landing.component';
 import { LoginComponent } from './examples/login/login.component';
 // import { ProfileComponent } from './examples/profile/profile.component';
 import { EventsComponent } from './components/events/events.component';
+import { CreateEventsComponent } from './components/events/create-events/create-events.component'
 import { ProfileComponent} from './components/profile/profile.component'
 import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
 
@@ -20,6 +21,7 @@ const routes: Routes = [
     // { path: 'examples/profile', component: ProfileComponent },
     { path: 'events', component: EventsComponent },
     { path: 'profile', component: ProfileComponent },
+    { path: 'createEvent', component: CreateEventsComponent },
 ];
 
 @NgModule({
