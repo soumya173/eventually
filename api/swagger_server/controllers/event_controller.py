@@ -4,6 +4,7 @@ import json
 from swagger_server.models.event import Event  # noqa: E501
 from swagger_server.models.events import Events  # noqa: E501
 from swagger_server.models.info import Info  # noqa: E501
+from swagger_server.models.team import Team  # noqa: E501
 from swagger_server.models.info_error import InfoError
 from swagger_server import util
 from flask import jsonify
@@ -156,8 +157,20 @@ def get_teams_by_eveid(eventid):  # noqa: E501
 
     :rtype: Teams
     """
-    return 'do some magic!'
-
+    conn = db.DbInterface().connect()
+    con = conn.cursor()
+    con.execute(f"SELECT id, event_id, name, reward_id, user_ids, lead_user_id, type FROM teams WHERE event_id={eventid}")
+    rows = con.fetchall()
+    teams = []
+    for r in rows:
+        teams.append(Team(id=r[0],
+                            event_id=r[1],
+                            name=r[2],
+                            reward_id=r[3],
+                            user_ids=r[4],
+                            lead_user_id=r[5],
+                            type=r[6]))
+    return jsonify(temas)
 
 def get_event_by_id(eventid):  # noqa: E501
     """Get event by id
