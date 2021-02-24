@@ -27,7 +27,7 @@ def create_event(body):  # noqa: E501
     con.execute(f"SELECT id, title, description, event_start_date, event_end_date, reg_start_date, reg_end_date, created_at, max_user, min_user, location, accept_file_type, accept_video_file FROM events WHERE title='{body.title}' and description='{body.description}'")
     rows = con.fetchall()
     if len(rows) > 0:
-        return Info(error=InfoError("Event already exists"))
+        return Info(error=InfoError("Event already exists")), 400
 
     con.execute(f"INSERT INTO events (title, description, event_start_date, event_end_date, reg_start_date, reg_end_date, max_user, min_user, accept_file_type, accept_video_file, location) VALUES ('{body.title}', '{body.description}', '{body.event_start_date}', '{body.event_end_date}', '{body.reg_start_date}', '{body.reg_end_date}', {body.max_user}, {body.min_user}, '{body.accept_file_type}', {body.accept_video_file}, '{body.location}')")
     conn.commit()
@@ -78,9 +78,9 @@ def delete_event_by_id(eventid):  # noqa: E501
                         accept_file_type=rows[0][11],
                         accept_video_file=rows[0][12])
         con.execute(f"DELETE FROM events WHERE id={eventid}")
-        con.commit()
+        conn.commit()
     else:
-        return Info(error=InfoError("Event not found"))
+        return Info(error=InfoError("Event not found")), 404
     return jsonify(event)
 
 
@@ -176,7 +176,7 @@ def get_event_by_id(eventid):  # noqa: E501
                         accept_file_type=rows[0][11],
                         accept_video_file=rows[0][12])
     else:
-        return Info(error=InfoError("Event not found"))
+        return Info(error=InfoError("Event not found")), 404
     return jsonify(event)
 
 
@@ -283,7 +283,7 @@ def modify_event_by_id(eventid, body):  # noqa: E501
                         accept_file_type=rows[0][11],
                         accept_video_file=rows[0][12])
     else:
-        return Info(error=InfoError("Event not found"))
+        return Info(error=InfoError("Event not found")), 404
     return jsonify(event)
 
 
