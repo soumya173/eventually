@@ -1,69 +1,95 @@
-<div class="page-header clear-filter" filter-color="orange" [formGroup]="createEventForm">
-    <div class="page-header-image rellax-header" data-rellax-speed="-7" style="background-color: #2CA8FF">
+<div class="page-header clear-filter" filter-color="orange">
+    <!-- <div class="page-header-image rellax-header" data-rellax-speed="-7" style="background-color: #2CA8FF">
 
-    </div>
+    </div> -->
     <div class="container">
-    <div class="content-center brand">
-        <div class="createEvent" >
+        <div class="content-center brand">
+            <div class="createEvent">
                 <div class="p-col-12 p-md-6">
                     <label class="mandatory" for="tite">Event Name : </label>&nbsp;
-                    <input type="text" pInputText id="title" formControlName="title" placeholder="title"
-                        class="ui-inputtext ui-corner-all ui-state-default ui-widget"
-                     />
+                    <input type="text" pInputText id="title" placeholder="title"
+                        class="ui-inputtext ui-corner-all ui-state-default ui-widget" />
                 </div>
                 <div class="p-col-12 p-md-6">
                     <label for="desc">Description : </label>&nbsp;
-                    <textarea 
-                    [formControl]="desc"
-                    id="desc"
-                    pInputText
-                    class="ui-width-100"></textarea>
-                </div>  
+                    <textarea id="desc" pInputText class="ui-width-100"></textarea>
+                </div>
                 <div>
-                <label for="desc">Event Start Date : </label>&nbsp;
-                <div class="datepicker-container">
-                    <div class="form-group">
-                      <input class="datetimepicker" placeholder="24/02/2021"
-                           name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                    <div class="datepicker-container">
+                        <div class="form-group">
+                            <label for="desc">Event Start Date : </label>&nbsp;
+                            <input class="datetimepicker" placeholder="24/02/2021" name="dp1" [(ngModel)]="model"
+                                ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                        </div>
                     </div>
-                </div> 
-            </div>
-            <div>
-                <label for="desc">Event End Date : </label>&nbsp;
-                <div class="datepicker-container">
-                    <div class="form-group">
-                      <input class="datetimepicker" placeholder="24/02/2021"
-                           name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                </div>
+                <div>
+                    <div class="datepicker-container">
+                        <div class="form-group">
+                            <label for="desc">Event End Date : </label>&nbsp;
+                            <input class="datetimepicker" placeholder="24/02/2021" name="dp2" [(ngModel)]="model"
+                                ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                        </div>
                     </div>
-                </div> 
-            </div>
-            
-            <div>
-                <label for="desc">Registration Start Date : </label>&nbsp;
-                <div class="datepicker-container">
-                    <div class="form-group">
-                      <input class="datetimepicker" placeholder="24/02/2021"
-                           name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
-                    </div>
-                </div> 
-            </div>
-            <div>
-                <label for="desc">Registration End Date : </label>&nbsp;
-                <div class="datepicker-container">
-                    <div class="form-group">
-                      <input class="datetimepicker" placeholder="24/02/2021"
-                           name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
-                    </div>
-                </div> 
-            </div> 
+                </div>
 
-            <div class="p-col-12 p-md-6">
-                <label for="title" class="mandatory">Frequency:</label>
-                <p-dropdown  id="title" formControlName="title"
-                    [options]="frequencyOptions"></p-dropdown>
+                <div>
+                    <div class="datepicker-container">
+                        <div class="form-group">
+                            <label for="desc">Registration Start Date : </label>&nbsp;
+                            <input class="datetimepicker" placeholder="24/02/2021" name="d3" [(ngModel)]="model"
+                                ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="datepicker-container">
+                        <div class="form-group">
+                            <label for="desc">Registration End Date : </label>&nbsp;
+                            <input class="datetimepicker" placeholder="24/02/2021" name="dp4" [(ngModel)]="model"
+                                ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                        </div>
+                    </div>
+                </div>
+                <div class="p-col-12 p-md-6">
+                    <label class="mandatory" for="tite">Maximum User : </label>&nbsp;
+                    <input type="text" pInputText id="title" placeholder=""
+                        class="ui-inputtext ui-corner-all ui-state-default ui-widget" />
+                </div>
+                <div class="p-col-12 p-md-6">
+                    <label class="mandatory" for="tite">Minimum User : </label>&nbsp;
+                    <input type="text" pInputText id="title" placeholder=""
+                        class="ui-inputtext ui-corner-all ui-state-default ui-widget" />
+                </div>
+                <div class="p-col-12 p-md-6">
+                    <label class="mandatory" for="tite">Location : </label>&nbsp;
+                    <input type="text" pInputText id="title"  placeholder=""
+                        class="ui-inputtext ui-corner-all ui-state-default ui-widget"/>
+                </div>
+                <div class="p-col-12 p-md-6">
+                    <label class="mandatory" for="tite">Accept File Type : </label>&nbsp;
+                    <input type="text" pInputText id="title"  placeholder=""
+                        class="ui-inputtext ui-corner-all ui-state-default ui-widget" />
+                </div>
+
+                <div class="checkbox">
+                    <label class="mandatory" for="tite">Accept Video File : </label>&nbsp;
+                    <label>
+                        <input type="checkbox" ddata-toggle="toggle">
+                    </label>
+                </div>
+
+
+                <div>
+                    <button type="button"  class="btn btn-default" placement="right">
+                        Save
+                    </button>
+                    <button type="button" class="btn btn-default" placement="right">
+                        Cancel
+                    </button>
+                </div>
+
             </div>
-        </div>
         </div>
     </div>
 </div>
-
