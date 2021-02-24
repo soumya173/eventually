@@ -21,6 +21,7 @@ CREATE TABLE `users` (
   `type` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
+  'logged' boolean DEFAULT false,
   FOREIGN KEY(id) REFERENCES teams(lead_user_id)
 );
 
@@ -78,6 +79,9 @@ CREATE TABLE `comments` (
   FOREIGN KEY(user_id) REFERENCES users(id),
   FOREIGN KEY(submission_id) REFERENCES submission(id)
 );
+
+
+INSERT INTO users (name, password,type,email) values ('admin','Welcome@123','admin','admin@gmail.com');
 
 -- ALTER TABLE `teams` ADD FOREIGN KEY (`event_id`) REFERENCES `events` (`id`);
 
