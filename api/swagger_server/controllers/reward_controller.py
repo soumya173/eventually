@@ -123,7 +123,7 @@ def get_reward_by_event_id(eventid):  # noqa: E501
     print(sql)
     r = cur.execute(sql).fetchall()
     print(r)
-    if r is None:
+    if r is None or len(r) == 0:
         db.DbInterface().disconnect()
         return Info(critical=f"No rewards found for the event with event_id : {eventid}"), 404
     db.DbInterface().disconnect()

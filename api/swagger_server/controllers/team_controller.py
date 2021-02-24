@@ -136,7 +136,7 @@ def get_team_by_id(teamid):  # noqa: E501
     print(sql)
     r = cur.execute(sql).fetchone()
     print(r)
-    if r is None:
+    if r is None or len(r) == 0:
         db.DbInterface().disconnect()
         return Info(critical=f"No team found with team_id: {teamid}"), 404
     db.DbInterface().disconnect()

@@ -70,7 +70,7 @@ CREATE TABLE `subscription` (
 
 CREATE TABLE `comments` (
   `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-  `comment` varchar(255) NOT NULL,
+  `comment` varchar(255),
   `commented_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `user_id` INTEGER,
   `submission_id` INTEGER NOT NULL,
