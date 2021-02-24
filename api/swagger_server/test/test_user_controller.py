@@ -39,6 +39,17 @@ class TestUserController(BaseTestCase):
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
+    def test_get_all_users(self):
+        """Test case for get_all_users
+
+        Get all users
+        """
+        response = self.client.open(
+            '/user',
+            method='GET')
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+
     def test_get_user_by_id(self):
         """Test case for get_user_by_id
 
