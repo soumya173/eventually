@@ -8,6 +8,7 @@ from six import BytesIO
 from swagger_server.models.event import Event  # noqa: E501
 from swagger_server.models.events import Events  # noqa: E501
 from swagger_server.models.info import Info  # noqa: E501
+from swagger_server.models.teams import Teams  # noqa: E501
 from swagger_server.test import BaseTestCase
 
 
@@ -83,6 +84,18 @@ class TestEventController(BaseTestCase):
         """
         response = self.client.open(
             '/event/subscribed/{user_id}'.format(user_id=56),
+            method='GET',
+            content_type='application/json')
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+
+    def test_get_teams_by_eveid(self):
+        """Test case for get_teams_by_eveid
+
+        Get teams by id
+        """
+        response = self.client.open(
+            '/event/{eventid}/teams'.format(eventid=56),
             method='GET',
             content_type='application/json')
         self.assert200(response,

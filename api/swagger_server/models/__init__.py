@@ -12,6 +12,7 @@ from swagger_server.models.info_critical import InfoCritical
 from swagger_server.models.info_error import InfoError
 from swagger_server.models.info_info import InfoInfo
 from swagger_server.models.info_warning import InfoWarning
+from swagger_server.models.login_details import LoginDetails
 from swagger_server.models.reward import Reward
 from swagger_server.models.rewards import Rewards
 from swagger_server.models.submission import Submission
