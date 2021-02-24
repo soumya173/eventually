@@ -8,6 +8,7 @@ from swagger_server.models.info_error import InfoError
 from swagger_server import util
 from flask import jsonify
 from swagger_server.dbinterface import dbinterface as db
+from datetime import datetime
 
 def create_event(body):  # noqa: E501
     """Create a event
@@ -23,17 +24,28 @@ def create_event(body):  # noqa: E501
         body = Event.from_dict(connexion.request.get_json())  # noqa: E501
     conn = db.DbInterface().connect()
     con = conn.cursor()
-    con.execute(f"SELECT * FROM events WHERE title='{body.title}' and description='{body.description}'")
+    con.execute(f"SELECT id, title, description, event_start_date, event_end_date, reg_start_date, reg_end_date, created_at, max_user, min_user, location, accept_file_type, accept_video_file FROM events WHERE title='{body.title}' and description='{body.description}'")
     rows = con.fetchall()
     if len(rows) > 0:
-        return Info(error=InfoError("Event already exists"))
+        return Info(error=InfoError("Event already exists")), 400
 
     con.execute(f"INSERT INTO events (title, description, event_start_date, event_end_date, reg_start_date, reg_end_date, max_user, min_user, accept_file_type, accept_video_file, location) VALUES ('{body.title}', '{body.description}', '{body.event_start_date}', '{body.event_end_date}', '{body.reg_start_date}', '{body.reg_end_date}', {body.max_user}, {body.min_user}, '{body.accept_file_type}', {body.accept_video_file}, '{body.location}')")
     conn.commit()
-    con.execute(f"SELECT * FROM events WHERE title='{body.title}' and description='{body.description}'")
+    con.execute(f"SELECT id, title, description, event_start_date, event_end_date, reg_start_date, reg_end_date, created_at, max_user, min_user, location, accept_file_type, accept_video_file FROM events WHERE title='{body.title}' and description='{body.description}'")
     rows = con.fetchall()
-    event = Event(rows[0][0], rows[0][1], rows[0][2], rows[0][3], rows[0][4], rows[0][5], rows[0][6],
-                    rows[0][7], rows[0][8], rows[0][9], rows[0][10], rows[0][11], rows[0][12])
+    event = Event(id=rows[0][0],
+                    title=rows[0][1],
+                    description=rows[0][2],
+                    event_start_date=rows[0][3],
+                    event_end_date=rows[0][4],
+                    reg_start_date=rows[0][5],
+                    reg_end_date=rows[0][6],
+                    created_at=rows[0][7],
+                    max_user=rows[0][8],
+                    min_user=rows[0][9],
+                    location=rows[0][10],
+                    accept_file_type=rows[0][11],
+                    accept_video_file=rows[0][12])
     return jsonify(event)
 
 
@@ -49,15 +61,26 @@ def delete_event_by_id(eventid):  # noqa: E501
     """
     conn = db.DbInterface().connect()
     con = conn.cursor()
-    con.execute(f"SELECT * FROM events WHERE id={eventid}")
+    con.execute(f"SELECT id, title, description, event_start_date, event_end_date, reg_start_date, reg_end_date, created_at, max_user, min_user, location, accept_file_type, accept_video_file FROM events WHERE id={eventid}")
     rows = con.fetchall()
     if len(rows) > 0:
-        event = Event(rows[0][0], rows[0][1], rows[0][2], rows[0][3], rows[0][4], rows[0][5], rows[0][6],
-                        rows[0][7], rows[0][8], rows[0][9], rows[0][10], rows[0][11], rows[0][12])
+        event = Event(id=rows[0][0],
+                        title=rows[0][1],
+                        description=rows[0][2],
+                        event_start_date=rows[0][3],
+                        event_end_date=rows[0][4],
+                        reg_start_date=rows[0][5],
+                        reg_end_date=rows[0][6],
+                        created_at=rows[0][7],
+                        max_user=rows[0][8],
+                        min_user=rows[0][9],
+                        location=rows[0][10],
+                        accept_file_type=rows[0][11],
+                        accept_video_file=rows[0][12])
         con.execute(f"DELETE FROM events WHERE id={eventid}")
-        con.commit()
+        conn.commit()
     else:
-        return Info(error=InfoError("Event not found"))
+        return Info(error=InfoError("Event not found")), 404
     return jsonify(event)
 
 
@@ -69,7 +92,29 @@ def get_active_event():  # noqa: E501
 
     :rtype: Events
     """
-    return 'do some magic!'
+    date_format = "%Y-%m-%d %H:%M:%S"
+    events = get_all_events()
+    events_json = json.loads(events.get_data(as_text=True))
+    active_events = []
+    now = datetime.strptime(datetime.today().strftime(date_format), date_format)
+    for event in events_json:
+        event_start = datetime.strptime(event['event_start_date'], date_format)
+        event_end = datetime.strptime(event['event_end_date'], date_format)
+        if event_start < now and event_end > now:
+            active_events.append(Event(id=event['id'],
+                            title=event['title'],
+                            description=event['description'],
+                            event_start_date=event['event_start_date'],
+                            event_end_date=event['event_end_date'],
+                            reg_start_date=event['reg_start_date'],
+                            reg_end_date=event['reg_end_date'],
+                            created_at=event['created_at'],
+                            max_user=event['max_user'],
+                            min_user=event['min_user'],
+                            location=event['location'],
+                            accept_file_type=event['accept_file_type'],
+                            accept_video_file=event['accept_video_file']))
+    return active_events
 
 
 def get_all_events():  # noqa: E501
@@ -82,12 +127,23 @@ def get_all_events():  # noqa: E501
     """
     conn = db.DbInterface().connect()
     con = conn.cursor()
-    con.execute("SELECT * FROM events")
+    con.execute("SELECT id, title, description, event_start_date, event_end_date, reg_start_date, reg_end_date, created_at, max_user, min_user, location, accept_file_type, accept_video_file FROM events")
     rows = con.fetchall()
     events = []
     for r in rows:
-        events.append(Event(r[0], r[1], r[2], r[3], r[4], r[5], r[6],
-                            r[7], r[8], r[9], r[10], r[11], r[12]))
+        events.append(Event(id=r[0],
+                        title=r[1],
+                        description=r[2],
+                        event_start_date=r[3],
+                        event_end_date=r[4],
+                        reg_start_date=r[5],
+                        reg_end_date=r[6],
+                        created_at=r[7],
+                        max_user=r[8],
+                        min_user=r[9],
+                        location=r[10],
+                        accept_file_type=r[11],
+                        accept_video_file=r[12]))
     return jsonify(events)
 
 def get_teams_by_eveid(eventid):  # noqa: E501
@@ -115,13 +171,24 @@ def get_event_by_id(eventid):  # noqa: E501
     """
     conn = db.DbInterface().connect()
     con = conn.cursor()
-    con.execute(f"SELECT * FROM events WHERE id={eventid}")
+    con.execute(f"SELECT id, title, description, event_start_date, event_end_date, reg_start_date, reg_end_date, created_at, max_user, min_user, location, accept_file_type, accept_video_file FROM events WHERE id={eventid}")
     rows = con.fetchall()
     if len(rows) > 0:
-        event = Event(rows[0][0], rows[0][1], rows[0][2], rows[0][3], rows[0][4], rows[0][5], rows[0][6],
-                        rows[0][7], rows[0][8], rows[0][9], rows[0][10], rows[0][11], rows[0][12])
+        event = Event(id=rows[0][0],
+                        title=rows[0][1],
+                        description=rows[0][2],
+                        event_start_date=rows[0][3],
+                        event_end_date=rows[0][4],
+                        reg_start_date=rows[0][5],
+                        reg_end_date=rows[0][6],
+                        created_at=rows[0][7],
+                        max_user=rows[0][8],
+                        min_user=rows[0][9],
+                        location=rows[0][10],
+                        accept_file_type=rows[0][11],
+                        accept_video_file=rows[0][12])
     else:
-        return Info(error=InfoError("Event not found"))
+        return Info(error=InfoError("Event not found")), 404
     return jsonify(event)
 
 
@@ -137,12 +204,23 @@ def get_subscribed_event(user_id):  # noqa: E501
     """
     conn = db.DbInterface().connect()
     con = conn.cursor()
-    con.execute(f"SELECT * FROM events WHERE id=(SELECT eventid FROM subscription where user_id={user_id})")
+    con.execute(f"SELECT id, title, description, event_start_date, event_end_date, reg_start_date, reg_end_date, created_at, max_user, min_user, location, accept_file_type, accept_video_file FROM events WHERE id=(SELECT eventid FROM subscription where user_id={user_id})")
     rows = con.fetchall()
     events = []
     for r in rows:
-        events.append(Event(r[0], r[1], r[2], r[3], r[4], r[5], r[6],
-                            r[7], r[8], r[9], r[10], r[11], r[12]))
+        events.append(Event(id=r[0],
+                        title=r[1],
+                        description=r[2],
+                        event_start_date=r[3],
+                        event_end_date=r[4],
+                        reg_start_date=r[5],
+                        reg_end_date=r[6],
+                        created_at=r[7],
+                        max_user=r[8],
+                        min_user=r[9],
+                        location=r[10],
+                        accept_file_type=r[11],
+                        accept_video_file=r[12]))
     return jsonify(events)
 
 
@@ -154,7 +232,29 @@ def get_upcoming_event():  # noqa: E501
 
     :rtype: Events
     """
-    return 'do some magic!'
+    date_format = "%Y-%m-%d %H:%M:%S"
+    events = get_all_events()
+    events_json = json.loads(events.get_data(as_text=True))
+    upcoming_events = []
+    now = datetime.strptime(datetime.today().strftime(date_format), date_format)
+    for event in events_json:
+        event_start = datetime.strptime(event['event_start_date'], date_format)
+        event_end = datetime.strptime(event['event_end_date'], date_format)
+        if event_start > now:
+            upcoming_events.append(Event(id=event['id'],
+                            title=event['title'],
+                            description=event['description'],
+                            event_start_date=event['event_start_date'],
+                            event_end_date=event['event_end_date'],
+                            reg_start_date=event['reg_start_date'],
+                            reg_end_date=event['reg_end_date'],
+                            created_at=event['created_at'],
+                            max_user=event['max_user'],
+                            min_user=event['min_user'],
+                            location=event['location'],
+                            accept_file_type=event['accept_file_type'],
+                            accept_video_file=event['accept_video_file']))
+    return upcoming_events
 
 
 def modify_event_by_id(eventid, body):  # noqa: E501
@@ -173,17 +273,29 @@ def modify_event_by_id(eventid, body):  # noqa: E501
         body = Event.from_dict(connexion.request.get_json())  # noqa: E501
     conn = db.DbInterface().connect()
     con = conn.cursor()
-    con.execute(f"SELECT * FROM events WHERE id={eventid}")
+    con.execute(f"SELECT id, title, description, event_start_date, event_end_date, reg_start_date, reg_end_date, created_at, max_user, min_user, location, accept_file_type, accept_video_file FROM events WHERE id={eventid}")
     rows = con.fetchall()
     if len(rows) > 0:
-        con.execute(f"UPDATE events SET (title, description, event_start_date, event_end_date, reg_start_date, reg_end_date, max_user, min_user, accept_file_type, accept_video_file, location) VALUES ('{body.title}', '{body.description}', '{body.event_start_date}', '{body.event_end_date}', '{body.reg_start_date}', '{body.reg_end_date}', {body.max_user}, {body.min_user}, '{body.accept_file_type}', {body.accept_video_file}, '{body.location}') WHERE id={eventid}")
-        con.commit()
-        con.execute(f"SELECT * FROM events WHERE id={eventid}")
+        con.execute(f"UPDATE events SET title='{body.title}', description='{body.description}', event_start_date='{body.event_start_date}', event_end_date='{body.event_end_date}', reg_start_date='{body.reg_start_date}', reg_end_date='{body.reg_end_date}', max_user={body.max_user}, min_user={body.min_user}, accept_file_type='{body.accept_file_type}', accept_video_file={body.accept_video_file}, location='{body.location}' WHERE id={eventid}")
+        conn.commit()
+        con.execute(f"SELECT id, title, description, event_start_date, event_end_date, reg_start_date, reg_end_date, created_at, max_user, min_user, location, accept_file_type, accept_video_file FROM events WHERE id={eventid}")
         rows = con.fetchall()
-        event = Event(rows[0][0], rows[0][1], rows[0][2], rows[0][3], rows[0][4], rows[0][5], rows[0][6],
-                        rows[0][7], rows[0][8], rows[0][9], rows[0][10], rows[0][11], rows[0][12])
+        print(rows)
+        event = Event(id=rows[0][0],
+                        title=rows[0][1],
+                        description=rows[0][2],
+                        event_start_date=rows[0][3],
+                        event_end_date=rows[0][4],
+                        reg_start_date=rows[0][5],
+                        reg_end_date=rows[0][6],
+                        created_at=rows[0][7],
+                        max_user=rows[0][8],
+                        min_user=rows[0][9],
+                        location=rows[0][10],
+                        accept_file_type=rows[0][11],
+                        accept_video_file=rows[0][12])
     else:
-        return Info(error=InfoError("Event not found"))
+        return Info(error=InfoError("Event not found")), 404
     return jsonify(event)
 
 
@@ -199,10 +311,21 @@ def search_events_by_keyword(keyword):  # noqa: E501
     """
     conn = db.DbInterface().connect()
     con = conn.cursor()
-    con.execute(f"SELECT * FROM events WHERE title LIKE %{keyword}% or description LIKE %{keyword}%")
+    con.execute(f"SELECT id, title, description, event_start_date, event_end_date, reg_start_date, reg_end_date, created_at, max_user, min_user, location, accept_file_type, accept_video_file FROM events WHERE title LIKE %{keyword}% or description LIKE %{keyword}%")
     rows = con.fetchall()
     events = []
     for r in rows:
-        events.append(Event(r[0], r[1], r[2], r[3], r[4], r[5], r[6],
-                            r[7], r[8], r[9], r[10], r[11], r[12]))
+        events.append(Event(id=r[0],
+                        title=r[1],
+                        description=r[2],
+                        event_start_date=r[3],
+                        event_end_date=r[4],
+                        reg_start_date=r[5],
+                        reg_end_date=r[6],
+                        created_at=r[7],
+                        max_user=r[8],
+                        min_user=r[9],
+                        location=r[10],
+                        accept_file_type=r[11],
+                        accept_video_file=r[12]))
     return jsonify(events)
