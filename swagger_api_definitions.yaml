@@ -1550,6 +1550,9 @@ definitions:
         type: "string"
       password:
         type: "string"
+      logged:
+        type: "boolean"
+        default: "false"
       type:
         type: "string"
         enum:

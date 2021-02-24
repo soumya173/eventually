@@ -1649,6 +1649,9 @@ definitions:
         type: "string"
       password:
         type: "string"
+      logged:
+        type: "boolean"
+        default: false
       type:
         type: "string"
         enum:
@@ -1656,6 +1659,7 @@ definitions:
         - "user"
     example:
       password: "password"
+      logged: false
       name: "name"
       id: 0
       type: "admin"
