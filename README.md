@@ -1,22 +1,28 @@
 # eventually
 Event management system
 
-# Setup local backend server (for testing)
-- Install pyhton 3 (https://www.python.org/downloads/)
-- For windows, Open command prompt
-  - Win + R
-  - type 'cmd'
-  - Enter
-- Navigate to the local repo directory
-  - cd /path/to/directory/
-- Create virtual environment (not mandatory but better to handle dependancies)
-  - pytho3 -m pip install --user virtualenv
-  - python3 -m venv env
-- Activate the virtual environment
-  - .\env\Scripts\activate
-- Install required packages
-  - pip3 install -r requirements.txt
-- Run flask server in localhost
-  - python3 -m /app/directory (where __main__.py is present)
+Base Requirements
+----------------------
+- A system to run the server
+  - Windows or Debian OS
+- Python 3
+- All the project files downloaded locally
 
-After this your server should be running and the requests should be processed properly.
+# Setup project to use
+- Navigate to the local project directory
+- Setup the project and its requirements by the following command
+  - For Windows,
+    - py setup_project_env.py
+  - For Debian or other Linux,
+    -  python3 setup_project_env.py
+- Run the backend server first
+  - For Windows,
+    - py -m api\swagger_server
+  - For Debian or other Linux,
+    -  python3 -m api/swagger_server
+-  Run the frontend server
+  -  // insert here
+- Open a browser and navigate to the below URL
+  -  // insert here
+
+Congrats, you are done.
