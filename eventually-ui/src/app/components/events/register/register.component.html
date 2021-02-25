@@ -1,34 +1,23 @@
 <div class="wrapper">
     <div class="page-header page-header-small clear-filter" filter-color="orange">
-        <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-color: lightskyblue ;">
+        <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url('assets/img/signup.jpg');">
         </div>
         <div class="container">
             <div class="content-center brand">
                 <h1 class="h1-seo">Registration</h1>
-                <h3>Register yourself for a event with a team or create your own Team.</h3>
+                <h3>Sign yourself for a event. Create a team and add your teammates.</h3>
                 <div class="blankSpace" style="height: 50px;"></div>
-                <div class="row">
-                    <div class="col-md-4 ml-auto mr-auto text-center">
-                        <button type="button" class="btn btn-primary btn-round btn-lg" placement="left">
-                            Join a Team
-                        </button>
-                    </div>
-                    <div class="col-md-4 ml-auto mr-auto text-center">
-                        <button type="button" class="btn btn-primary btn-round btn-lg" placement="left">
-                            Create a Team
-                        </button>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
 
     <div class="section section-about-us">
-        <div class="section section-about-us">
+        <div>
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 ml-auto mr-auto text-center">
-                        <h2  class="h1-seo">Join the team.</h2>
+                        <h2  class="h1-seo">Join an event.</h2>
                     </div>
                 </div>
             </div>
@@ -36,10 +25,10 @@
         <div class="section section-about-us">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8 ml-auto mr-auto text-center">
-                        <h3 class="h1-seo d-inline-block" >Select a Team</h3>
+                    <div class="col-md-6 ml-auto mr-auto text-center">
+                        <h4 class="h1-seo d-inline-block cushionpadding" >Select a Event</h4>
                         <div ngbDropdown class="d-inline-block">
-                        <button class="btn btn-outline-primary d-inline-block" id="dropdownBasic1" ngbDropdownToggle>Select a team</button>
+                        <button class="btn btn-outline-primary d-inline-block" id="dropdownBasic1" ngbDropdownToggle>Select a event</button>
                         <div ngbDropdownMenu aria-labelledby="dropdownBasic1 ">
                             <button ngbDropdownItem>Action - 1</button>
                             <button ngbDropdownItem>Another Action</button>
@@ -48,11 +37,39 @@
                         </div>
                     </div>
                 </div>
+                <div class="row cushiondiv"></div>
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto text-center">
+                        <h4 class="h1-seo d-inline-block cushionpadding" >Team Name: </h4>
+                        <div class="form-group d-inline-block">
+                            <input type="text" value="" placeholder="Team Name" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 ml-auto mr-auto text-center">
+                            <h4 class="h1-seo d-inline-block cushionpadding" >Add Teammates: </h4>
+                            <div ngbDropdown class="d-inline-block">
+                                <button class="btn btn-outline-primary d-inline-block" id="dropdownBasic1" ngbDropdownToggle>Select your teammates</button>
+                                <div ngbDropdownMenu aria-labelledby="dropdownBasic1 ">
+                                    <button ngbDropdownItem>Action - 1</button>
+                                    <button ngbDropdownItem>Another Action</button>
+                                    <button ngbDropdownItem>Something else is here</button>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row cushiondiv"></div>
+                <div class="row cushiondiv"></div>
+                <div class="row">
+                    <div class="col-md-9 ml-auto mr-auto text-center"></div>
+                    <div class="col-md-3 ml-auto mr-auto text-center">
+                        <button type="button" class="btn btn-primary btn-round">Register</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <footer class="footer" data-background-color="black">
+    <footer class="footer bg-primary" data-background-color="black">
         <div class="container">
             <nav>
                 <ul>

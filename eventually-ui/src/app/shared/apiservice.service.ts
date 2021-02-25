@@ -18,7 +18,8 @@ export class ApiserviceService {
 }
 
   constructor(private _http: HttpClient) {
-    this.headers = new HttpHeaders()
+    this.headers = new HttpHeaders(),
+    this.headers = this.headers.set('Access-Control-Allow-Origin', '*');
   }
 
   public getApi = (resrc: String ): Observable <any> => {
@@ -35,10 +36,10 @@ export class ApiserviceService {
 
 
   public addUsingObject = (resrc: string, item: any): Observable<any> => {
-		return this._http.post(this.baseApiUrl + resrc, item)
-			.pipe(
-				map((response: Response) => response),
-				catchError(ApiserviceService.handleError)
-			);
-	}
+  return this._http.post(this.baseApiUrl + resrc, item)
+  .pipe(
+    map((response: Response) => response),
+    catchError(ApiserviceService.handleError)
+    );
+  }
 }

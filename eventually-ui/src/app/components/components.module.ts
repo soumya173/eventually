@@ -20,6 +20,7 @@ import { TypographyComponent } from './typography/typography.component';
 import { CountDownTimerComponent } from './count-down-timer/count-down-timer.component';
 import { RegisterComponent } from './events/register/register.component';
 import {HttpClientModule} from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import {HttpClientModule} from '@angular/common/http';
         CreateEventsComponent,
         CountDownTimerComponent,
         RegisterComponent,
+        LoginComponent
     ],
     exports:[ ComponentsComponent ]
 })

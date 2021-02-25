@@ -1,85 +1,92 @@
 <div class="wrapper">
-    <div class="page-header clear-filter" filter-color="orange">
+    <div class="page-header clear-filter page-header-small" filter-color="orange">
         <div class="page-header-image rellax-header" data-rellax-speed="-7" style="background-color: #2CA8FF">
+        </div>
+        <div class="container">
+            <div class="content-center brand">
+                <h1 class="h1-seo">Create Event</h1>
+                <h3>Crete a fun event and specify the details below.</h3>
+                <div class="blankSpace" style="height: 50px;"></div>
+            </div>
         </div>
     </div>
 
 <div class="section section-about-us">
-    <div class="create-event">
+    <div class="create-event container text-center">
         <div class="event-left">
             <div class="event-padding form-group">
                 <label class="mandatory" for="tite">Event Name : </label>&nbsp;
                 <input type="text" pInputText id="title" placeholder="title" [(ngModel)]="title"
                     class="ui-inputtext ui-corner-all ui-state-default ui-widget form-control" />
             </div>
-            <div class="event-padding">
+            <div class="event-padding form-group">
                 <label for="desc">Description : </label>&nbsp;
-                <textarea id="desc" pInputText [(ngModel)]="desc" class="ui-width-100"></textarea>
+                <textarea id="desc" pInputText [(ngModel)]="desc" class="ui-width-100 ui-inputtext ui-corner-all ui-state-default ui-widget form-control"></textarea>
             </div>
-            <div class="event-padding">
+            <div class="event-padding form-group">
                 <div class="datepicker-container">
                     <div class="form-group">
                         <label for="desc">Event Start Date : </label>&nbsp;
                         <input class="datetimepicker" placeholder="24/02/2021" name="dp1" [(ngModel)]="eventStartDate"
-                            ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                            ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" class="ui-width-100 ui-inputtext ui-corner-all ui-state-default ui-widget form-control">
                     </div>
                 </div>
             </div>
-            <div class="event-padding">
+            <div class="event-padding form-group">
                 <div class="datepicker-container">
                     <div class="form-group">
                         <label for="desc">Event End Date : </label>&nbsp;
                         <input class="datetimepicker" placeholder="24/02/2021" name="dp2" [(ngModel)]="eventEndDate"
-                            ngbDatepicker #d1="ngbDatepicker" (click)="d1.toggle()">
+                            ngbDatepicker #d1="ngbDatepicker" (click)="d1.toggle()" class="ui-width-100 ui-inputtext ui-corner-all ui-state-default ui-widget form-control">
                     </div>
                 </div>
             </div>
 
-            <div class="event-padding">
+            <div class="event-padding form-group">
                 <div class="datepicker-container">
                     <div class="form-group">
                         <label for="desc">Registration Start Date : </label>&nbsp;
                         <input class="datetimepicker" placeholder="24/02/2021" name="d3" [(ngModel)]="regStartDate"
-                            ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()">
+                            ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()" class="ui-width-100 ui-inputtext ui-corner-all ui-state-default ui-widget form-control">
                     </div>
                 </div>
             </div>
-            <div class="event-padding">
+            <div class="event-padding form-group">
                 <div class="datepicker-container">
                     <div class="form-group">
                         <label for="desc">Registration End Date : </label>&nbsp;
                         <input class="datetimepicker" placeholder="24/02/2021" name="dp4" [(ngModel)]="regEndDate"
-                            ngbDatepicker #d3="ngbDatepicker" (click)="d3.toggle()">
+                            ngbDatepicker #d3="ngbDatepicker" (click)="d3.toggle()" class="ui-width-100 ui-inputtext ui-corner-all ui-state-default ui-widget form-control">
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="event-right">
-            <div class="event-padding">
+            <div class="event-padding form-group">
                 <label class="mandatory" for="tite">Maximum User : </label>&nbsp;
                 <input type="text" [(ngModel)]="maxUser" pInputText id="maxuser" placeholder=""
-                    class="ui-inputtext ui-corner-all ui-state-default ui-widget" />
+                class="ui-width-100 ui-inputtext ui-corner-all ui-state-default ui-widget form-control" />
             </div>
-            <div class="event-padding">
+            <div class="event-padding form-group">
                 <label class="mandatory" for="tite">Minimum User : </label>&nbsp;
                 <input type="text" pInputText id="title" placeholder="" [(ngModel)]="minUser"
-                    class="ui-inputtext ui-corner-all ui-state-default ui-widget" />
+                    class="ui-width-100 ui-inputtext ui-corner-all ui-state-default ui-widget form-control" />
             </div>
-            <div class="event-padding">
+            <div class="event-padding form-group">
                 <label class="mandatory" for="tite">Location : </label>&nbsp;
                 <input type="text" pInputText id="title" placeholder="" [(ngModel)]="location"
-                    class="ui-inputtext ui-corner-all ui-state-default ui-widget" />
+                class="ui-width-100 ui-inputtext ui-corner-all ui-state-default ui-widget form-control" />
             </div>
-            <div class="event-padding">
-                <label class="mandatory" for="tite">Accept File Type : </label>&nbsp;
+            <div class="event-padding form-group">
+                <label class="mandatory form-group" for="tite">Accept File Type : </label>&nbsp;
                 <input type="text" pInputText id="title" placeholder=""
-                    class="ui-inputtext ui-corner-all ui-state-default ui-widget" />
+                class="ui-width-100 ui-inputtext ui-corner-all ui-state-default ui-widget form-control" />
             </div>
 
-            <div class="checkbox">
+            <div class="checkbox form-group">
                 <label class="mandatory" for="tite">Accept Video File : </label>&nbsp;
-                    <input type="checkbox" class="checkbox-event" [(ngModel)]="acceptFileVideo" ddata-toggle="toggle">
+                    <input type="checkbox" class="checkbox-event ui-width-100 ui-inputtext ui-corner-all ui-state-default ui-widget form-control" [(ngModel)]="acceptFileVideo" ddata-toggle="toggle">
             </div>
         </div>
     </div>
@@ -92,7 +99,27 @@
         </button>
     </div>
 </div>
+<footer class="footer bg-primary" data-background-color="black">
+        <div class="container">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="https://ribboncommunications.com/">
+                            Ribbon Communications
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://ribboncommunications.com/about-us">
+                            About Us
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="copyright">
+                &copy;
+                {{data | date: 'yyyy'}}, Designed by Team Eventually
+            </div>
+        </div>
+    </footer>
 </div>
 
-<ngb-alert #staticAlert *ngIf="!staticAlertClosed" (closed)="staticAlertClosed = true">Check out our awesome new
-    features!</ngb-alert>

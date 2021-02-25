@@ -7,6 +7,7 @@
                 <ngb-carousel *ngIf="topEvents.length>0">
                     <ng-template ngbSlide *ngFor="let event of topEvents">
                         <div class="content-center brand">
+                            <div class="blankSpace" style="height: 50px;"></div>
                             <h1 class="h1-seo">{{event.title}}</h1>
                             <div class="blankSpace" style="height: 50px;"></div>
                             <app-count-down> </app-count-down>
@@ -66,8 +67,7 @@
         </div>
     </div>
 
-
-    <footer class="footer" data-background-color="black">
+    <footer class="footer bg-primary" data-background-color="black">
         <div class="container">
             <nav>
                 <ul>
@@ -90,3 +90,4 @@
         </div>
     </footer>
 </div>
+
