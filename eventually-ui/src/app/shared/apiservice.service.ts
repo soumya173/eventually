@@ -32,4 +32,13 @@ export class ApiserviceService {
         })
       );
   }
+
+
+  public addUsingObject = (resrc: string, item: any): Observable<any> => {
+		return this._http.post(this.baseApiUrl + resrc, item)
+			.pipe(
+				map((response: Response) => response),
+				catchError(ApiserviceService.handleError)
+			);
+	}
 }

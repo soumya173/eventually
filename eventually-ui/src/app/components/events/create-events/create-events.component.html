@@ -93,3 +93,6 @@
     </div>
 </div>
 </div>
+
+<ngb-alert #staticAlert *ngIf="!staticAlertClosed" (closed)="staticAlertClosed = true">Check out our awesome new
+    features!</ngb-alert>
