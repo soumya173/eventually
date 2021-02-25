@@ -4,26 +4,29 @@
         </div>
         <div class="container">
             <div class="content-center">
-                <ngb-carousel>
-                    <ng-template ngbSlide>
+                <ngb-carousel *ngIf="topEvents.length>0">
+                    <ng-template ngbSlide *ngFor="let event of topEvents">
                         <div class="content-center brand">
-                            <h1 class="h1-seo">Technothon</h1>
-                            <h3>This event will start in : </h3>
+                            <h1 class="h1-seo">{{event.title}}</h1>
                             <div class="blankSpace" style="height: 50px;"></div>
                             <app-count-down> </app-count-down>
+                            <h3>To Start </h3>
                             <div class="blankSpace" style="height: 50px;"></div>
                             <button type="button" class="btn btn-default" placement="right"></button>
                             <div class="blankSpace" style="height: 50px;"></div>
                         </div>
                     </ng-template>
+                    
+                </ngb-carousel>
+                <ngb-carousel *ngIf="!topEvents.length>0">
                     <ng-template ngbSlide>
                         <div class="content-center brand">
-                            <h1 class="h1-seo">Technothon</h1>
-                            <h3>This event will start in : </h3>
+                            <div class="blankSpace" style="height: 100px;"></div>
+                            <h1 class="h1-seo">Create Fun Events.</h1>
+                            <h3>Now you can create events for your team and Enjoy together. </h3>
                             <div class="blankSpace" style="height: 50px;"></div>
-                            <app-count-down> </app-count-down>
                             <div class="blankSpace" style="height: 50px;"></div>
-                            <button type="button" class="btn btn-default" placement="right"></button>
+                            <button type="button" class="btn btn-default" placement="right"> Create Event</button>
                             <div class="blankSpace" style="height: 50px;"></div>
                         </div>
                     </ng-template>
@@ -31,41 +34,38 @@
             </div>
         </div>
     </div>
-
-    <div class="section section-tabs">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-10 ml-auto col-xl-6 mr-auto" *ngFor="let n of [1,2,3,4]">
-                        <!-- Nav tabs -->
-        
-                        <div class="card">
-                            <span class="event-name">
-                                Events Name
-                            </span>
-                            <button type="button" class="btn btn-default register-button" placement="right">
-                                Register
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section section-about-us">
+    <div  *ngIf='eventList.length>0'>
+        <div class="section section-about-us text-center"><h2 class="h1-seo">List of Events:</h2></div>
+        <div class="section section-about-us" *ngFor="let event of eventList;let i = index" [attr.data-index]="i" [style.background-color] = "backgroundColorList[i]">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 ml-auto mr-auto text-center">
-                        <h2 class="title">Technothon</h2>
-                        <h5 class="description">Yearly event for all the developers to show their might in there chosen technologies. Developers will get a free hand in developing whatever the want.
-                            Do what you want to do developers.
+                        <h2 class="title">{{event.title}}</h2>
+                        <h5 class="description">{{event.description}}
                         </h5>
                     </div>
                 </div>
                 <div class="separator separator-primary"></div>
-                You think you got what it takes? 
-                <button>Register</button>
+                <div class="col-md-8 ml-auto mr-auto text-center">
+                    <span class="description">You think you got what it takes? </span>
+                    <button type="button" class="btn btn-primary btn-round" [routerLink]="['/profile']">Register</button>
+                </div>
             </div>
         </div>
+    </div>
+    
+    <div class="section section-about-us" *ngIf='!eventList.length>0'>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto text-center">
+                    <h2 class="title">Oops!!</h2>
+                    <h5 class="description">We do not have any upcoming events for now. Please check back later for new exciting events
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <footer class="footer" data-background-color="black">
         <div class="container">
