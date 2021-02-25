@@ -4,7 +4,6 @@ import six
 from swagger_server.models.info import Info  # noqa: E501
 from swagger_server.models.login_details import LoginDetails  # noqa: E501
 from swagger_server.models.user import User  # noqa: E501
-from swagger_server.models.info import Info  # noqa: E501
 from swagger_server.models.info_error import InfoError
 from swagger_server import util
 from flask import jsonify
@@ -86,10 +85,8 @@ def get_all_users():  # noqa: E501
                             type=r[2],
                             email=r[3],
                             logged=r[4]))
-        conn.close()
-        return jsonify(events)
-    conn.close()        
-    return Info(error=InfoError(f"No users")), 400
+    conn.close()
+    return jsonify(events)
 
 def get_user_by_id(userid):  # noqa: E501
     """Get user by user id
