@@ -14,7 +14,7 @@ import * as Rellax from 'rellax';
 })
 
 export class ComponentsComponent implements OnInit, OnDestroy {
-    data : Date = new Date();
+    data: Date = new Date();
 
     page = 4;
     page1 = 5;
@@ -32,7 +32,7 @@ export class ComponentsComponent implements OnInit, OnDestroy {
 
     state_icon_primary = true;
 
-    constructor( private renderer : Renderer2, config: NgbAccordionConfig) {
+    constructor( private renderer: Renderer2, config: NgbAccordionConfig) {
         config.closeOthers = true;
         config.type = 'info';
     }

@@ -1,23 +1,24 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
-import { NouisliderModule } from 'ng2-nouislider';
-import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
-import { BasicelementsComponent } from './basicelements/basicelements.component';
-import { NavigationComponent } from './navigation/navigation.component';
-import { TypographyComponent } from './typography/typography.component';
-import { NucleoiconsComponent } from './nucleoicons/nucleoicons.component';
-import { ComponentsComponent } from './components.component';
-import { NotificationComponent } from './notification/notification.component';
-import { NgbdModalBasic } from './modal/modal.component';
-import { EventsComponent } from './events/events.component';
-import { ProfileComponent } from './profile/profile.component';
-import { CreateEventsComponent } from './events/create-events/create-events.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
+import { NouisliderModule } from 'ng2-nouislider';
+import { NgxSimpleCountdownModule } from 'ngx-simple-countdown';
 import { DropdownModule } from 'primeng/dropdown';
+import { BasicelementsComponent } from './basicelements/basicelements.component';
+import { ComponentsComponent } from './components.component';
+import { CreateEventsComponent } from './events/create-events/create-events.component';
+import { EventsComponent } from './events/events.component';
+import { NgbdModalBasic } from './modal/modal.component';
+import { NavigationComponent } from './navigation/navigation.component';
+import { NotificationComponent } from './notification/notification.component';
+import { NucleoiconsComponent } from './nucleoicons/nucleoicons.component';
+import { ProfileComponent } from './profile/profile.component';
+import { TypographyComponent } from './typography/typography.component';
+import { CountDownTimerComponent } from './count-down-timer/count-down-timer.component';
+
 
 @NgModule({
     imports: [
@@ -28,7 +29,8 @@ import { DropdownModule } from 'primeng/dropdown';
         RouterModule,
         JwBootstrapSwitchNg2Module,
         ReactiveFormsModule,
-        DropdownModule
+        DropdownModule,
+        NgxSimpleCountdownModule
       ],
     declarations: [
         ComponentsComponent,
@@ -41,6 +43,7 @@ import { DropdownModule } from 'primeng/dropdown';
         EventsComponent,
         ProfileComponent,
         CreateEventsComponent,
+        CountDownTimerComponent,
     ],
     exports:[ ComponentsComponent ]
 })
