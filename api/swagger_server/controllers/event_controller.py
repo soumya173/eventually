@@ -217,7 +217,7 @@ def get_subscribed_event(user_id):  # noqa: E501
     """
     conn = db.DbInterface().connect()
     con = conn.cursor()
-    con.execute(f"SELECT id, title, description, event_start_date, event_end_date, reg_start_date, reg_end_date, created_at, max_user, min_user, location, accept_file_type, accept_video_file FROM events WHERE id=(SELECT eventid FROM subscription where user_id={user_id})")
+    con.execute(f"SELECT id, title, description, event_start_date, event_end_date, reg_start_date, reg_end_date, created_at, max_user, min_user, location, accept_file_type, accept_video_file FROM events WHERE id=(SELECT event_id FROM subscription where user_id={user_id})")
     rows = con.fetchall()
     events = []
     for r in rows:
