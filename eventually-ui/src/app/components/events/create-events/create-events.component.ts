@@ -10,6 +10,11 @@ import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@ang
 export class CreateEventsComponent implements OnInit {
   createEventForm: FormGroup;
   frequencyOptions = []
+  model;
+  model1;
+  model2;
+  model3;
+
 
 
   constructor(public fb: FormBuilder) {
