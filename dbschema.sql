@@ -80,8 +80,47 @@ CREATE TABLE `comments` (
   FOREIGN KEY(submission_id) REFERENCES submission(id)
 );
 
-
+-- User table
 INSERT INTO users (name, password,type,email) values ('admin','Welcome@123','admin','admin@gmail.com');
+INSERT INTO users (name, password,type,email) values ('shashi','Welcome@123','user','shashi@gmail.com');
+INSERT INTO users (name, password,type,email) values ('sgorai','Welcome@123','user','sgorai@gmail.com');
+INSERT INTO users (name, password,type,email) values ('nikil','Welcome@123','user','nikil@gmail.com');
+INSERT INTO users (name, password,type,email) values ('mohit','Welcome@123','user','mohit@gmail.com');
+INSERT INTO users (name, password,type,email) values ('mahipal','Welcome@123','user','mahipal@gmail.com');
+
+-- Events table
+INSERT INTO EVENTS (title,description,event_start_date,event_end_date,reg_start_date,reg_end_date,max_user,min_user,accept_file_type,accept_video_file,location,allow_comment) values ('Technothon','Welcome to technothon 2021',"2021-02-23 08:30:00","2021-02-25 08:30:00","2021-02-15 08:30:00","2021-02-22 08:30:00",5,3,'tar',true,'online',true);
+INSERT INTO EVENTS (title,description,event_start_date,event_end_date,reg_start_date,reg_end_date,max_user,min_user,accept_file_type,accept_video_file,location,allow_comment) values ('Hackathon','Welcome to Hackathon 2021',"2021-02-10 08:30:00","2021-02-12 08:30:00","2021-01-05 08:30:00","2021-01-22 08:30:00",5,3,'tar',true,'online',true);
+INSERT INTO EVENTS (title,description,event_start_date,event_end_date,reg_start_date,reg_end_date,max_user,min_user,accept_file_type,accept_video_file,location,allow_comment) values ('Arm Wrestling','Welcome to Arm Wrestling 2021',"2021-03-10 08:30:00","2021-03-12 08:30:00","2021-02-05 08:30:00","2021-02-22 08:30:00",1,1,'tar',true,'online',true);
+
+-- Subscription table
+INSERT INTO Subscription (user_id,event_id) values (2,1);
+INSERT INTO Subscription (user_id,event_id) values (2,3);
+INSERT INTO Subscription (user_id,event_id) values (3,1);
+INSERT INTO Subscription (user_id,event_id) values (3,3);
+
+--Submission table
+
+INSERT INTO submission (title,team_id,event_id,location,video_file) values ('initial',2,1,'/var/initial/','initial.mp4');
+INSERT INTO submission (title,team_id,event_id,location,video_file) values ('final',1,1,'/var/final/','final.mp4');
+INSERT INTO submission (title,team_id,event_id,location,video_file) values ('intermettent',2,1,'/var/lost/','lost.mp4');
+
+-- rewards tables
+INSERT into rewards (event_id,amount,type,title,position) values (1,2000,'best loser','Awards to the best loser',1);
+INSERT into rewards (event_id,amount,type,title,position) values (1,1000,'best loser','Awards to the second best loser',2);
+INSERT into rewards (event_id,amount,type,title,position) values (1,500,'best loser','Awards to the third best loser',3);
+
+INSERT into rewards (event_id,amount,type,title,position) values (3,20000,'Arm breaker','Best arm breaker',1);
+INSERT into rewards (event_id,amount,type,title,position) values (3,10000,'Arm breaker','Better arm breaker',2);
+INSERT into rewards (event_id,amount,type,title,position) values (3,5000,'Arm breaker','Good arm breaker',3);
+-- teams tables
+INSERT INTO teams (event_id,name,reward_id,user_ids,lead_user_id,type) values (3,'Retro style',4,'[6]',6,'participant');
+INSERT INTO teams (event_id,name,reward_id,user_ids,lead_user_id,type) values (3,'Broken hand',5,'[3]',3,'participant');
+INSERT INTO teams (event_id,name,reward_id,user_ids,lead_user_id,type) values (3,'No One',6,'[2]',2,'participant');
+
+INSERT INTO teams (event_id,name,user_ids,lead_user_id,type) values (1,'Techno Judge','[4,5]',5,'judge');
+
+INSERT INTO teams (event_id,name,reward_id,user_ids,lead_user_id,type) values (1,'EVENTually',1,'[2,3,4,5,6]',4,'participant');
 
 -- ALTER TABLE `teams` ADD FOREIGN KEY (`event_id`) REFERENCES `events` (`id`);
 
