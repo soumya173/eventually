@@ -18,6 +18,7 @@ import { NucleoiconsComponent } from './nucleoicons/nucleoicons.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TypographyComponent } from './typography/typography.component';
 import { CountDownTimerComponent } from './count-down-timer/count-down-timer.component';
+import { RegisterComponent } from './events/register/register.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { CountDownTimerComponent } from './count-down-timer/count-down-timer.com
         ProfileComponent,
         CreateEventsComponent,
         CountDownTimerComponent,
+        RegisterComponent,
     ],
     exports:[ ComponentsComponent ]
 })
