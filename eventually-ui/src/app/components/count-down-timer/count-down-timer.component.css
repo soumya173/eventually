@@ -1,0 +1,19 @@
+.timer {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 1.4em;
+    letter-spacing: -1px;
+}
+.timer span {
+    font-size: 2em;
+    margin: 0 3px 0 15px;
+}
+.timerPod {
+    border: 2px solid black;
+    border-radius: 50px;
+    height: 100px;
+    width: 100px;
+    display: inline-block;
+    padding-top: 30px;
+    background-color: coral;
+}

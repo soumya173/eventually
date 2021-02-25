@@ -4,7 +4,6 @@ import six
 from swagger_server.models.info import Info  # noqa: E501
 from swagger_server.models.login_details import LoginDetails  # noqa: E501
 from swagger_server.models.user import User  # noqa: E501
-from swagger_server.models.info import Info  # noqa: E501
 from swagger_server.models.info_error import InfoError
 from swagger_server import util
 from flask import jsonify
@@ -66,6 +65,28 @@ def delete_user_by_id(userid):  # noqa: E501
     conn.close()
     return Info(error=InfoError(f"User doesnot exists with userid={userid}")), 400
 
+def get_all_users():  # noqa: E501
+    """Get all users
+
+     # noqa: E501
+
+
+    :rtype: User
+    """
+    conn = db.DbInterface().connect()
+    con = conn.cursor()
+    con.execute("select id,name,type,email,logged from users")
+    rows = con.fetchall()
+    events = []
+    if len(rows) > 0:
+        for r in rows:
+            events.append(User(id=r[0],
+                            name=r[1],
+                            type=r[2],
+                            email=r[3],
+                            logged=r[4]))
+    conn.close()
+    return jsonify(events)
 
 def get_user_by_id(userid):  # noqa: E501
     """Get user by user id
