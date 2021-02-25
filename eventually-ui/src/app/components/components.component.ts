@@ -27,7 +27,7 @@ export class ComponentsComponent implements OnInit, OnDestroy {
     // Eventually variables
     eventList = [];
     topEvents = [];
-    backgroundColorList = ['aliceblue', 'antiquewhite', 'azure', 'beige'];
+    backgroundColorList = ['aliceblue', 'antiquewhite', 'azure', 'beige', 'aliceblue', 'antiquewhite', 'azure', 'beige'];
 
     state_icon_primary = true;
 

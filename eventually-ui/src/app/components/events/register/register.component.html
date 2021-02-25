@@ -1,1 +1,78 @@
-<p>register works!</p>
+<div class="wrapper">
+    <div class="page-header page-header-small clear-filter" filter-color="orange">
+        <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-color: lightskyblue ;">
+        </div>
+        <div class="container">
+            <div class="content-center brand">
+                <h1 class="h1-seo">Registration</h1>
+                <h3>Register yourself for a event with a team or create your own Team.</h3>
+                <div class="blankSpace" style="height: 50px;"></div>
+                <div class="row">
+                    <div class="col-md-4 ml-auto mr-auto text-center">
+                        <button type="button" class="btn btn-primary btn-round btn-lg" placement="left">
+                            Join a Team
+                        </button>
+                    </div>
+                    <div class="col-md-4 ml-auto mr-auto text-center">
+                        <button type="button" class="btn btn-primary btn-round btn-lg" placement="left">
+                            Create a Team
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section section-about-us">
+        <div class="section section-about-us">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 ml-auto mr-auto text-center">
+                        <h2  class="h1-seo">Join the team.</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section section-about-us">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 ml-auto mr-auto text-center">
+                        <h3 class="h1-seo d-inline-block" >Select a Team</h3>
+                        <div ngbDropdown class="d-inline-block">
+                        <button class="btn btn-outline-primary d-inline-block" id="dropdownBasic1" ngbDropdownToggle>Select a team</button>
+                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1 ">
+                            <button ngbDropdownItem>Action - 1</button>
+                            <button ngbDropdownItem>Another Action</button>
+                            <button ngbDropdownItem>Something else is here</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer" data-background-color="black">
+        <div class="container">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="https://ribboncommunications.com/">
+                            Ribbon Communications
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://ribboncommunications.com/about-us">
+                            About Us
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="copyright">
+                &copy;
+                {{data | date: 'yyyy'}}, Designed by Team Eventually
+            </div>
+        </div>
+    </footer>
+    
+</div>
