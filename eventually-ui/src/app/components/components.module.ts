@@ -19,6 +19,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { TypographyComponent } from './typography/typography.component';
 import { CountDownTimerComponent } from './count-down-timer/count-down-timer.component';
 import { RegisterComponent } from './events/register/register.component';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { RegisterComponent } from './events/register/register.component';
         JwBootstrapSwitchNg2Module,
         ReactiveFormsModule,
         DropdownModule,
-        NgxSimpleCountdownModule
+        NgxSimpleCountdownModule,
+        HttpClientModule
       ],
     declarations: [
         ComponentsComponent,

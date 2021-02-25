@@ -1,15 +1,16 @@
-<div class="page-header clear-filter" filter-color="orange">
-    <div class="page-header-image rellax-header" data-rellax-speed="-7" style="background-color: #2CA8FF">
-
+<div class="wrapper">
+    <div class="page-header clear-filter" filter-color="orange">
+        <div class="page-header-image rellax-header" data-rellax-speed="-7" style="background-color: #2CA8FF">
+        </div>
     </div>
 
-
+<div class="section section-about-us">
     <div class="create-event">
         <div class="event-left">
-            <div class="event-padding">
+            <div class="event-padding form-group">
                 <label class="mandatory" for="tite">Event Name : </label>&nbsp;
                 <input type="text" pInputText id="title" placeholder="title" [(ngModel)]="title"
-                    class="ui-inputtext ui-corner-all ui-state-default ui-widget" />
+                    class="ui-inputtext ui-corner-all ui-state-default ui-widget form-control" />
             </div>
             <div class="event-padding">
                 <label for="desc">Description : </label>&nbsp;
@@ -90,5 +91,5 @@
             Cancel
         </button>
     </div>
-
+</div>
 </div>

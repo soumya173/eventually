@@ -9,11 +9,7 @@
     margin: 0 3px 0 15px;
 }
 .timerPod {
-    border: 2px solid black;
-    border-radius: 50px;
-    height: 100px;
-    width: 100px;
     display: inline-block;
     padding-top: 30px;
-    background-color: coral;
+    font-size: 180px;
 }
