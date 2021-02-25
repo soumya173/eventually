@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-events',
@@ -8,34 +8,37 @@ import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@ang
 
 })
 export class CreateEventsComponent implements OnInit {
-  createEventForm: FormGroup;
-  frequencyOptions = []
-  model;
-  model1;
-  model2;
-  model3;
+  title;
+  desc;
+  eventStartDate:Date;
+  eventEndDate:Date;
+  regStartDate:Date;
+  regEndDate:Date;
+  maxUser:number;
+  minUser:number;
+  location;
+  acceptFileType;
+  acceptFileVideo:boolean;
 
+  constructor(private router: Router) {
 
-
-  constructor(public fb: FormBuilder) {
-    this.frequencyOptions = [
-      { label: 'Hourly', value: 'Hourly' },
-      { label: 'Daily', value: 'Daily' },
-      { label: 'Weekly', value: 'Weekly' },
-      { label: 'Monthly', value: 'Monthly' },
-      { label: 'Yearly', value: 'Yearly' }
-  ];
-   }
-
-  ngOnInit(): void {
-    this.buildCreateEventForm();
   }
 
-  buildCreateEventForm() {
-		this.createEventForm = this.fb.group({
-			title: ['', [Validators.required]],
-      desc: ['', [Validators.required]],
-		});
-	}
+  ngOnInit(): void {
+  }
+
+  save(){
+    console.log("Titile", this.title);
+    console.log("Desc", this.desc);
+    console.log("event start", this.eventStartDate);
+    console.log("event End", this.eventEndDate);
+    console.log("event Reg", this.regStartDate);
+    console.log("event Reg end", this.regEndDate);
+    console.log("max user", this.maxUser);
+    console.log("min user", this.minUser);
+    console.log("Location", this.location);
+    console.log("accept file type", this.acceptFileType);
+    console.log("accept video", this.acceptFileVideo);
+  }
 
 }

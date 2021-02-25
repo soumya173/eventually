@@ -10,3 +10,11 @@
 .register-button {
     float: right;
 }
+
+.btn {
+    background-color: lightpink;
+}
+
+.checbox-event{
+    width: 45px  !important;
+}

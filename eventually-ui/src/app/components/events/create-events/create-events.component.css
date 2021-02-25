@@ -1,0 +1,43 @@
+
+.create-event {
+    padding: 200px;
+    font-size: x-large;
+    display: flex;
+    }
+
+
+    input, textarea {
+       width: 400px;
+       height: 50px;
+    }
+
+.event-left{
+    margin-right: 50px;
+}
+
+/* .event-right {
+
+} */
+
+.event-padding {
+    padding: 5px;
+}
+
+label {
+width: 251px;
+}
+
+.checkbox-event{
+    width: 45px  !important;
+}
+
+
+.btn {
+    background-color: lightpink;
+    width: 125px;
+    margin-right: 10px;
+}
+
+.btn-container{
+    float: right;
+}
