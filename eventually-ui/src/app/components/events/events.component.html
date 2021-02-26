@@ -51,8 +51,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 ml-auto mr-auto text-center">
-                        <h2 class="title">{{selectedEvent.title}}</h2>
-                        <h5 class="description">{{selectedEvent.description}}
+                        <h2 class="title">{{selectedEvent.title | json}}</h2>
+                        <h5 class="description">{{selectedEvent.description | json}}
                         </h5>
                     </div>
                 </div>
@@ -65,6 +65,7 @@
             </div>
         </div>
     </div>
+    <router-outlet></router-outlet>
 
     <footer class="footer bg-primary" data-background-color="black">
         <div class="container">

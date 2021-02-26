@@ -12,7 +12,7 @@ import { ApiserviceService} from '../../shared/apiservice.service'
 export class EventsComponent implements OnInit {
   eventList = [];
   expandEvent = false;
-  selectedEvent: any;
+  selectedEvent = {};
 
   constructor(private router: Router, public globals: Globals, private apiService: ApiserviceService) { }
 
@@ -40,9 +40,8 @@ export class EventsComponent implements OnInit {
 
   viewEvent(e) {
     this.expandEvent = true;
-    const i = this.eventList.findIndex(event => event.id = e.id);
-    this.selectedEvent = this.eventList[i];
-    console.log('Selfkjasldkjf:::', this.selectedEvent);
+    this.selectedEvent = e;
+    console.log('Selected Event:::', this.selectedEvent)
   }
 
   backtoevents() {
