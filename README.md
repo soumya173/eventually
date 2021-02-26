@@ -6,6 +6,7 @@ Base Requirements
 - A system to run the server
   - Windows or Debian OS
 - Python 3
+- Downlod and install npm
 - All the project files downloaded locally
 
 # Setup project to use
@@ -21,8 +22,11 @@ Base Requirements
   - For Debian or other Linux,
     -  python3 -m api/swagger_server
 -  Run the frontend server
-  -  // insert here
+  -  npm i
+  -  npm start
 - Open a browser and navigate to the below URL
-  -  // insert here
+  -  http://localhost:4200
 
 Congrats, you are done.
+
+
