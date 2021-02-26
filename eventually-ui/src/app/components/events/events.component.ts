@@ -29,22 +29,24 @@ export class EventsComponent implements OnInit {
   }
 
   fetchEvents() {
-        this.apiService.getApi('event').subscribe(
-            resp => {
-                this.eventList = resp;
-            }, err => {
-                console.log('eRROR :::::', err);
-            }
-        )
-    }
+      this.apiService.getApi('event').subscribe(
+          resp => {
+              this.eventList = resp;
+          }, err => {
+              console.log('eRROR :::::', err);
+          }
+      )
+  }
 
-    viewEvent(e) {
-      this.expandEvent = true;
-      this.selectedEvent = e;
-      console.log('Selfkjasldkjf:::', this.selectedEvent);
-    }
-    backtoevents() {
-      this.expandEvent = false;
-    }
+  viewEvent(e) {
+    this.expandEvent = true;
+    const i = this.eventList.findIndex(event => event.id = e.id);
+    this.selectedEvent = this.eventList[i];
+    console.log('Selfkjasldkjf:::', this.selectedEvent);
+  }
+
+  backtoevents() {
+    this.expandEvent = false;
+  }
 
 }

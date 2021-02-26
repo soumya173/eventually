@@ -3,6 +3,7 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 import { Globals } from '../global';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiserviceService} from '../apiservice.service'
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-navbar',
@@ -17,7 +18,7 @@ export class NavbarComponent implements OnInit {
     username: String;
     password: String;
 
-    constructor(public location: Location, private element: ElementRef, private apiService: ApiserviceService,
+    constructor(private router: Router, public location: Location, private element: ElementRef, private apiService: ApiserviceService,
         private modalService: NgbModal, public globals: Globals) {
         this.sidebarVisible = false;
     }
@@ -86,7 +87,12 @@ export class NavbarComponent implements OnInit {
         )
     }
 
+    routeToCreateEvent() {
+    this.router.navigate(['/home']);
+    }
+
     logout() {
         this.globals.loginFlag = false;
+        this.routeToCreateEvent();
     }
 }
