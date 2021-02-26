@@ -1,38 +1,94 @@
 <nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent" color-on-scroll="500">
   <div class="container">
-      <div class="navbar-translate">
-          <a class="navbar-brand" [routerLink]="['/index']" placement="bottom">
-            Eventually
+    <div class="navbar-translate">
+      <a class="navbar-brand" [routerLink]="['/index']" placement="bottom">
+        Eventually
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" data-nav-image="assets/img/blurred-image-1.jpg" data-color="orange">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/home']">
+            Home
           </a>
-      </div>
-      <div class="collapse navbar-collapse" data-nav-image="assets/img/blurred-image-1.jpg" data-color="orange">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/home']">
-                  Home
-                </a>
-            </li>
-              <li class="nav-item">
-                  <a class="nav-link" [routerLink]="['/events']">
-                    Events
-                  </a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" [routerLink]="['/profile']">
-                      Profile
-                  </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/notifications']">
-                  Notifications
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/login']">
-                  Login
-                </a>
-              </li>
-          </ul>
-      </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/events']">
+            Events
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="globals.loginFlag">
+          <a class="nav-link" [routerLink]="['/profile']">
+            Profile
+          </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/leaderboard']">
+              Leaderboard
+            </a>
+          </li>
+        <li class="nav-item" *ngIf="globals.loginFlag">
+          <a class="nav-link" [routerLink]="['/notifications']">
+            Notifications
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!globals.loginFlag">
+          <a class="nav-link" (click)='login(content)'>
+            Login
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="globals.loginFlag">
+            <a class="nav-link" (click)='logout(content)'>
+              Logout
+            </a>
+          </li>
+      </ul>
+    </div>
   </div>
 </nav>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title text-center">Login to Eventually</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container login-page">
+      <div class="row">
+        <div class="col-md-4 content-center ml-auto mr-auto">
+          <div class="content">
+            <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+
+              <input type="text" class="form-control" autocomplete="off" [(ngModel)]='username' placeholder="login name"
+                (focus)="focus=true" (blur)="focus=false" />
+            </div>
+            <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus1===true}">
+
+              <input type="password" placeholder="password" autocomplete="off" [(ngModel)]='password'
+                class="form-control" (focus)="focus1=true" (blur)="focus1=false" />
+            </div>
+          </div>
+          <div class="footer text-center">
+            <button class="btn btn-primary btn-round btn-lg btn-block"
+              (click)="security();modal.close('Close click')">Login</button>
+          </div>
+          <div class="text-center">
+            <h6>
+              <a href="#pablo" class="link">Create Account</a>
+            </h6>
+          </div>
+          <div class="text-center">
+            <h6>
+              <a href="#pablo" class="link">Need Help?</a>
+            </h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>

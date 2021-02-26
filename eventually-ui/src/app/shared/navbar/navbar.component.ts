@@ -1,16 +1,24 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { Globals } from '../global';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ApiserviceService} from '../apiservice.service'
 
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.scss']
+    styleUrls: ['./navbar.component.scss'],
+    providers: [ Globals ]
 })
 export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
+    loginModal = false;
+    username: String;
+    password: String;
 
-    constructor(public location: Location, private element : ElementRef) {
+    constructor(public location: Location, private element: ElementRef, private apiService: ApiserviceService,
+        private modalService: NgbModal, public globals: Globals) {
         this.sidebarVisible = false;
     }
 
@@ -57,5 +65,28 @@ export class NavbarComponent implements OnInit {
 
     button1clicked() {
         alert('That is true');
+    }
+
+    login(content) {
+        this.modalService.open(content, { size: 'lg' })
+    }
+
+    security() {
+        const obj = {
+            name: this.username,
+            password: this.password
+        };
+        this.apiService.addUsingObject('user/login', obj).subscribe(
+            resp => {
+                console.log('resp', resp);
+                this.globals.loginFlag = true;
+            }, err => {
+                console.log('eRROR :::::', err);
+            }
+        )
+    }
+
+    logout() {
+        this.globals.loginFlag = false;
     }
 }

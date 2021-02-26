@@ -1,19 +1,58 @@
 <div class="wrapper">
-    <div class="page-header page-header-small clear-filter" filter-color="orange">
-        <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url('assets/img/signup.jpg');">
-        </div>
-        <div class="container">
-            <div class="content-center brand">
-                <h1 class="h1-seo">Registration</h1>
-                <h3>Sign yourself for a event. Create a team and add your teammates.</h3>
-                <div class="blankSpace" style="height: 50px;"></div>
-                
+        <div class="page-header page-header-small clear-filter" filter-color="orange">
+            <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url('assets/img/signup.jpg');">
+            </div>
+            <div class="container">
+                <div class="content-center brand">
+                    <h1 class="h1-seo">Registration</h1>
+                    <h3>Sign yourself for a event. Create a team and add your teammates.</h3>
+                    <div class="blankSpace" style="height: 50px;"></div>
+                    <button type="button" class="btn btn-primary btn-round" (click)='togglePage(true)'>Show My Teams</button>
+                    <button type="button" class="btn btn-primary btn-round" (click)='togglePage(false)'>Register a Team</button>
+                </div>
             </div>
         </div>
-    </div>
+    
+        <div class="section section-tabs" *ngIf='showTeams'>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 ml-auto col-xl-6 mr-auto" *ngFor="let team of myTeams">
+                        <div class="card">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-8 ml-auto mr-auto text-center">
+                                        <h3 class="title h1-seo">{{team.name}}</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 ml-auto mr-auto text-center">
+                                        <h4 class="title">Team Leader:</h4>
+                                    </div>
+                                    <div class="col-md-6 ml-auto mr-auto text-center">
+                                        <h4 class="title h1-seo">{{team.leader}}</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 ml-auto mr-auto text-center">
+                                        <h4 class="title h1-seo">Team Mates:</h4>
+                                    </div>
+                                    <div class="col-md-6 ml-auto mr-auto text-center">
+                                        <div *ngFor="let name of team['teammates']"><h4 class="title h1-seo">{{name}}</h4></div>
+                                    </div>
+                                </div>
+                                <div class="separator separator-primary"></div>
+                                <div class="col-md-8 ml-auto mr-auto text-center">
+                                    <span class="description">Want to make some Edits? </span>
+                                    <button type="button" class="btn btn-primary btn-round">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <div class="section section-about-us">
-        <div>
+        <div class="section section-about-us" *ngIf='!showTeams'>
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 ml-auto mr-auto text-center">
@@ -21,75 +60,73 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="section section-about-us">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 ml-auto mr-auto text-center">
-                        <h4 class="h1-seo d-inline-block cushionpadding" >Select a Event</h4>
-                        <div ngbDropdown class="d-inline-block">
-                        <button class="btn btn-outline-primary d-inline-block" id="dropdownBasic1" ngbDropdownToggle>Select a event</button>
-                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1 ">
-                            <button ngbDropdownItem>Action - 1</button>
-                            <button ngbDropdownItem>Another Action</button>
-                            <button ngbDropdownItem>Something else is here</button>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row cushiondiv"></div>
-                <div class="row">
-                    <div class="col-md-6 ml-auto mr-auto text-center">
-                        <h4 class="h1-seo d-inline-block cushionpadding" >Team Name: </h4>
-                        <div class="form-group d-inline-block">
-                            <input type="text" value="" placeholder="Team Name" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="col-md-6 ml-auto mr-auto text-center">
-                            <h4 class="h1-seo d-inline-block cushionpadding" >Add Teammates: </h4>
+            <div class="section section-about-us">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 ml-auto mr-auto text-center">
+                            <h4 class="h1-seo d-inline-block cushionpadding" >Select a Event</h4>
                             <div ngbDropdown class="d-inline-block">
-                                <button class="btn btn-outline-primary d-inline-block" id="dropdownBasic1" ngbDropdownToggle>Select your teammates</button>
+                                <button class="btn btn-outline-primary d-inline-block" id="dropdownBasic1" ngbDropdownToggle>{{eventname.length > 0 ? eventname :'Select a event'}}</button>
                                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1 ">
-                                    <button ngbDropdownItem>Action - 1</button>
-                                    <button ngbDropdownItem>Another Action</button>
-                                    <button ngbDropdownItem>Something else is here</button>
+                                    <button ngbDropdownItem *ngFor='let event of eventList' (click)="selectedEvent(event)">{{event.title}}</button>
                                 </div>
                             </div>
                         </div>
-                </div>
-                <div class="row cushiondiv"></div>
-                <div class="row cushiondiv"></div>
-                <div class="row">
-                    <div class="col-md-9 ml-auto mr-auto text-center"></div>
-                    <div class="col-md-3 ml-auto mr-auto text-center">
-                        <button type="button" class="btn btn-primary btn-round">Register</button>
+                    </div>
+                    <div class="row cushiondiv"></div>
+                    <div class="row">
+                        <div class="col-md-6 ml-auto mr-auto text-center">
+                            <h4 class="h1-seo d-inline-block cushionpadding" >Team Name: </h4>
+                            <div class="form-group d-inline-block">
+                                <input type="text" [(ngModel)]="teamName" placeholder="Team Name" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-6 ml-auto mr-auto text-center">
+                            <div class="row">
+                                <h4 class="h1-seo d-inline-block cushionpadding" >Add Teammates: </h4>
+                                <div ngbDropdown class="d-inline-block">
+                                    <button class="btn btn-outline-primary d-inline-block" id="dropdownBasic" ngbDropdownToggle>Select your teammates</button>
+                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic">
+                                        <button ngbDropdownItem *ngFor='let user of userList' (click)="usersSelected(user)">{{user.name}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <span class="badge badge-default cushionpadding" *ngFor="let user of selectedUsersName">{{user}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row cushiondiv"></div>
+                    <div class="row cushiondiv"></div>
+                    <div class="row">
+                        <div class="col-md-9 ml-auto mr-auto text-center"></div>
+                        <div class="col-md-3 ml-auto mr-auto text-center">
+                            <button type="button" class="btn btn-primary btn-round" (click)='register()'>Register</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <footer class="footer bg-primary" data-background-color="black">
-        <div class="container">
-            <nav>
-                <ul>
-                    <li>
-                        <a href="https://ribboncommunications.com/">
-                            Ribbon Communications
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://ribboncommunications.com/about-us">
-                            About Us
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="copyright">
-                &copy;
-                {{data | date: 'yyyy'}}, Designed by Team Eventually
+        <footer class="footer bg-primary" data-background-color="black">
+            <div class="container">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="https://ribboncommunications.com/">
+                                Ribbon Communications
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://ribboncommunications.com/about-us">
+                                About Us
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright">
+                    &copy;
+                    {{data | date: 'yyyy'}}, Designed by Team Eventually
+                </div>
             </div>
-        </div>
-    </footer>
-    
-</div>
+        </footer>
+    </div>

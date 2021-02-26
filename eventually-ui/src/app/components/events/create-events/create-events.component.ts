@@ -4,11 +4,13 @@ import { ApiserviceService } from '../../../shared/apiservice.service';
 import {Subject} from 'rxjs';
 import {debounceTime} from 'rxjs/operators';
 import {NgbAlert} from '@ng-bootstrap/ng-bootstrap';
+import { Globals } from '../../../shared/global';
 
 @Component({
   selector: 'app-create-events',
   templateUrl: './create-events.component.html',
   styleUrls: ['./create-events.component.css'],
+  providers: [Globals]
 
 })
 export class CreateEventsComponent implements OnInit {
@@ -31,7 +33,7 @@ export class CreateEventsComponent implements OnInit {
   @ViewChild('staticAlert', {static: false}) staticAlert: NgbAlert;
   @ViewChild('selfClosingAlert', {static: false}) selfClosingAlert: NgbAlert;
 
-  constructor(private router: Router, private apiService: ApiserviceService) {
+  constructor(private router: Router, private apiService: ApiserviceService, public globals: Globals) {
 
   }
 

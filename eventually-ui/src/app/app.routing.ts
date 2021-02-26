@@ -12,12 +12,16 @@ import { CreateEventsComponent } from './components/events/create-events/create-
 import { ProfileComponent} from './components/profile/profile.component'
 import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.component';
 import { RegisterComponent } from './components/events/register/register.component';
+import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'home', component: ComponentsComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'leaderboard', component: LeaderboardComponent },
+    { path: 'notifications', component: NotificationComponent },
     { path: 'nucleoicons', component: NucleoiconsComponent },
     { path: 'examples/landing', component: LandingComponent },
     { path: 'examples/login', component: LoginComponent },

@@ -21,6 +21,8 @@ import { CountDownTimerComponent } from './count-down-timer/count-down-timer.com
 import { RegisterComponent } from './events/register/register.component';
 import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 
 @NgModule({
@@ -49,7 +51,9 @@ import { LoginComponent } from './login/login.component';
         CreateEventsComponent,
         CountDownTimerComponent,
         RegisterComponent,
-        LoginComponent
+        LoginComponent,
+        LeaderboardComponent,
+        NotificationsComponent
     ],
     exports:[ ComponentsComponent ]
 })

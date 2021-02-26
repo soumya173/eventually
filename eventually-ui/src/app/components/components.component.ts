@@ -4,6 +4,7 @@ import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
 import * as Rellax from 'rellax';
 import { ApiserviceService } from '../shared/apiservice.service'
 import { Router } from '@angular/router';
+import { Globals } from '../shared/global';
 
 @Component({
     selector: 'app-components',
@@ -12,7 +13,8 @@ import { Router } from '@angular/router';
     ngb-progressbar {
         margin-top: 5rem;
     }
-    `]
+    `],
+    providers: [Globals]
 })
 
 export class ComponentsComponent implements OnInit, OnDestroy {
@@ -33,6 +35,7 @@ export class ComponentsComponent implements OnInit, OnDestroy {
 
     constructor( private renderer: Renderer2,
         config: NgbAccordionConfig,
+        public globals: Globals,
         private apiService: ApiserviceService) {
         config.closeOthers = true;
         config.type = 'info';
@@ -54,6 +57,7 @@ export class ComponentsComponent implements OnInit, OnDestroy {
         var body = document.getElementsByTagName('body')[0];
         body.classList.add('index-page');
         this.fetchEvents();
+        this.subscribeFlag();
     }
     ngOnDestroy(){
         var navbar = document.getElementsByTagName('nav')[0];
@@ -81,6 +85,10 @@ export class ComponentsComponent implements OnInit, OnDestroy {
             }
         }
         return this.topEvents = [];
+    }
+
+    subscribeFlag() {
+        
     }
 
 }

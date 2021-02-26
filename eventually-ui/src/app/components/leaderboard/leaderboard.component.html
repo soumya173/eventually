@@ -1,0 +1,48 @@
+<div class="wrapper">
+    <div class="page-header page-header-small" filter-color="orange">
+        <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url('assets/img/eventimage.jpg') ;">
+        </div>
+        <div class="container">
+            <div class="content-center">
+                <p class="category">Checkout the winners here:</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div  *ngIf='eventList.length>0'>
+    <div class="section section-about-us text-center"><h2 class="h1-seo">Winners of various events:</h2></div>
+    <div class="section section-about-us" *ngFor="let event of eventList;let i = index" [attr.data-index]="i" [style.background-color] = "backgroundColorList[i]">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto text-center">
+                    <h2 class="title">{{event.title}}</h2>
+                    <h5 class="description">{{event.description}}
+                    </h5>
+                </div>
+            </div>
+            <div class="separator separator-primary"></div>
+        </div>
+    </div>
+</div>
+<footer class="footer bg-primary" data-background-color="black">
+    <div class="container">
+        <nav>
+            <ul>
+                <li>
+                    <a href="https://ribboncommunications.com/">
+                        Ribbon Communications
+                    </a>
+                </li>
+                <li>
+                    <a href="https://ribboncommunications.com/about-us">
+                        About Us
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            &copy;
+            {{data | date: 'yyyy'}}, Designed by Team Eventually
+        </div>
+    </div>
+</footer>

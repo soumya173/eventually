@@ -4,10 +4,10 @@
         </div>
         <div class="container">
             <div class="content-center">
-                <p class="category">Upcoming/Ongoing Events</p>
-                <div>
+                <p class="category">Upcoming/Ongoing Events </p>
+                <div >
                     <button type="button" (click)="routeToCreateEvent()" class="btn btn-default" placement="right">
-                        Create Events
+                        Create Event
                     </button>
                 </div>
             </div>
@@ -16,19 +16,51 @@
 </div>
 
 
-<div class="section section-tabs">
+<div class="section section-tabs" *ngIf="!expandEvent">
     <div class="container">
         <div class="row">
-            <div class="col-md-10 ml-auto col-xl-6 mr-auto" *ngFor="let n of [1,2,3,4]">
-                <!-- Nav tabs -->
+            <div class="col-md-8 ml-auto mr-auto text-center">
+                <h2  class="h1-seo">My Events</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 ml-auto col-xl-6 mr-auto" *ngFor="let event of eventList">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 ml-auto mr-auto text-center">
+                            <h2 class="title">{{event.title}}</h2>
+                            <h5 class="description">{{event.description}}
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="separator separator-primary"></div>
+                    <div class="col-md-8 ml-auto mr-auto text-center">
+                        <button type="button" class="btn btn-primary btn-round" (click)='viewEvent(event)'>View</button>
+                    </div>
+                </div>
+                <div style="height: 50px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
-                <div class="card">
-                    <span class="event-name">
-                        Events Name
-                    </span>
-                    <button type="button" class="btn btn-default register-button" placement="right">
-                        Register
-                    </button>
+<div  *ngIf='expandEvent'>
+        <div class="section section-about-us" [style.background-color] = "backgroundColorList[0]">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 ml-auto mr-auto text-center">
+                        <h2 class="title">{{selectedEvent.title}}</h2>
+                        <h5 class="description">{{selectedEvent.description}}
+                        </h5>
+                    </div>
+                </div>
+                <div class="separator separator-primary"></div>
+                <div class="col-md-8 ml-auto mr-auto text-center">
+                        <button type="button" class="btn btn-primary btn-round">Submit Files</button>
+                    <button type="button" class="btn btn-primary btn-round">Submit Video</button>
+                    <button type="button" class="btn btn-primary btn-round" (click)="backtoevents()">Close</button>
                 </div>
             </div>
         </div>
@@ -56,4 +88,3 @@
             </div>
         </div>
     </footer>
-</div>
