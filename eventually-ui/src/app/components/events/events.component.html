@@ -47,25 +47,35 @@
 </div>
 
 <div  *ngIf='expandEvent'>
-        <div class="section section-about-us" [style.background-color] = "backgroundColorList[0]">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 ml-auto mr-auto text-center">
-                        <h2 class="title">{{selectedEvent.title | json}}</h2>
-                        <h5 class="description">{{selectedEvent.description | json}}
-                        </h5>
-                    </div>
-                </div>
-                <div class="separator separator-primary"></div>
+    <div class="section section-about-us" *ngFor="let event of selectedEvent">
+        <div class="container">
+            <div class="row">
                 <div class="col-md-8 ml-auto mr-auto text-center">
-                        <button type="button" class="btn btn-primary btn-round">Submit Files</button>
-                    <button type="button" class="btn btn-primary btn-round">Submit Video</button>
-                    <button type="button" class="btn btn-primary btn-round" (click)="backtoevents()">Close</button>
+                    <h2 class="title">Event Name: {{event.title}}</h2>
+                    <h5 class="description">{{event.description}}</h5>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto text-center">
+                    <h5 class="description">Created on : {{event.created_at}}</h5>
+                    <h5 class="description">Event ID : {{event.id}}</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto text-center">
+                    <h5 class="description">Start Date : {{event.event_start_date}}</h5>
+                    <h5 class="description">End Date : {{event.event_end_date}}</h5>
+                </div>
+            </div>
+            <div class="separator separator-primary"></div>
+            <div class="col-md-8 ml-auto mr-auto text-center">
+                    <button type="button" class="btn btn-primary btn-round">Submit Files</button>
+                <button type="button" class="btn btn-primary btn-round">Submit Video</button>
+                <button type="button" class="btn btn-primary btn-round" (click)="backtoevents()">Close</button>
             </div>
         </div>
     </div>
-    <router-outlet></router-outlet>
+</div>
 
     <footer class="footer bg-primary" data-background-color="black">
         <div class="container">

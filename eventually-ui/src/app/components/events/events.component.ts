@@ -12,7 +12,7 @@ import { ApiserviceService} from '../../shared/apiservice.service'
 export class EventsComponent implements OnInit {
   eventList = [];
   expandEvent = false;
-  selectedEvent = {};
+  selectedEvent = [];
 
   constructor(private router: Router, public globals: Globals, private apiService: ApiserviceService) { }
 
@@ -40,7 +40,7 @@ export class EventsComponent implements OnInit {
 
   viewEvent(e) {
     this.expandEvent = true;
-    this.selectedEvent = e;
+    this.selectedEvent.push(e);
     console.log('Selected Event:::', this.selectedEvent)
   }
 
